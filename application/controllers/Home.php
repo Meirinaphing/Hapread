@@ -112,18 +112,34 @@ class Home extends CI_Controller{
 			redirect(base_url());
  
 		}else{
-			?>
-            	<script>
-					alert('login gagal');
-				</script>
-            <?php
-			redirect(base_url());
+		echo '<script language="javascript" type="text/javascript">
+		alert("login gagal cek id dan password anda");
+	</script>';
 		}
+		
+			redirect(base_url('home/login'));
 	}
  
 	function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url());
+	}
+	
+	function regis(){
+		$nama = $this->input->post('name');
+		$email = $this->input->post('email');
+		$password = $this->input->post('pass');
+		$jeniskelamin = $this->input->post('jk');
+ 
+		$data = array(
+			'nama' => $nama,
+			'email' => $email,
+			'password' => md5($password),
+			'jeniskelamin' =>$jeniskelamin,
+						
+			);
+		$this->m_data->input_data($data,'account');
+		redirect(base_url('home/login'));
 	}
 }
 

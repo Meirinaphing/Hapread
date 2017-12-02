@@ -7,6 +7,19 @@
 	<?php echo $js; ?>
 	<?php echo $css; ?>
 </head>
+	<script>
+    function cekpss(s){
+		var s=s;
+		var	ps = document.getElementById('pass').value;
+		if(s == ps){
+			
+			}else{
+				document.getElementById('repass').value="";
+				alert("Password dan RePasword tidak cocok silahkan Periksa Kembali")
+				}
+			
+	}
+    </script>
 <body>
 	<?php echo $header; ?>
 
@@ -16,7 +29,7 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="<?php echo base_url('index.php/home/aksi_login'); ?>" method="post">
+						<form action="<?php echo base_url('home/aksi_login'); ?>" method="post">
 							<input type="email" id="email" name="email" placeholder="Email" />
 							<input type="password" id="password" name="password" placeholder="Password"/>
 							<button type="submit" class="btn btn-default">Login</button>
@@ -29,11 +42,16 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="#">
+						<form action="<?php echo base_url('home/regis'); ?>" method="post">
 							<input type="text" id="name" name="name" placeholder="Name"/>
 							<input type="email" id="email" name="email" placeholder="Email Address"/>
-							<input type="pass" id="password" name="password" placeholder="Password"/>
-							<input type="pass" id="repass" name="repass" placeholder="Repassword"/>
+							<input type="password" id="pass" name="pass" placeholder="Password"/>
+							<input type="password" id="repass" name="repass" onChange="cekpss(this.value)" placeholder="Repassword"/>
+                            Jenis Kelamin : 
+                            <select name="jk" id="jk">
+                            <option>Pria</option>
+                            <option>Wanita</option>
+                            </select><br><br>
                           	<button type="submit" class="btn btn-default">Signup</button>
 						</form>
 					</div><!--/sign up form-->
