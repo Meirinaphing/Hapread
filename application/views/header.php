@@ -52,6 +52,25 @@ $(function(){
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
+                        <?php
+						$a=$this->session->userdata('status');
+							
+						if(isset($a) and $a=="login"){
+							
+							?>
+                            	<ul class="nav navbar-nav" id="isinav" >
+                                
+								<li><a href="<?php echo base_url('index.php/Home/account'); ?>"><i class="fa fa-user"></i> Account</a></li>
+<!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
+								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
+							</ul>                            
+                            <?php
+								
+						}else{
+						?>
+                        
 							<ul class="nav navbar-nav" id="isinav" >
 								<li><a href="<?php echo base_url('index.php/Home/account'); ?>"><i class="fa fa-user"></i> Account</a></li>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
@@ -59,6 +78,7 @@ $(function(){
 								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
+                        <?php } ?>
 						</div>
 					</div>
 				</div>
@@ -80,7 +100,7 @@ $(function(){
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
 								<li><a href="<?php echo base_url(); ?>" >Home</a></li>
-								<li><a href="<?php echo base_url('index.php/Home/shop'); ?>">Shop</a></li>
+								<li><a href="<?php echo base_url('Home/shop'); ?>">Shop</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="#">Products</a></li>
@@ -97,7 +117,7 @@ $(function(){
 									</ul>
 								</li>  -->
 								<!-- <li><a href="#">404</a></li> -->
-								<li><a href="<?php echo base_url('index.php/Home/contact'); ?>">Contact</a></li>
+								<li><a href="<?php echo base_url('Home/contact'); ?>">Contact</a></li>
 							</ul>
 						</div>
 					</div>
