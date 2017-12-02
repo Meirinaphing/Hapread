@@ -78,7 +78,7 @@ $(function(){
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
-								<li><a href="<?php echo base_url('index.php/Home/'); ?>" class="active">Home</a></li>
+								<li><a href="<?php echo base_url('index.php/Home/'); ?>" >Home</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/shop'); ?>">Shop</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
