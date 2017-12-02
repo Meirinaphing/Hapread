@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hapread Online Bookstore</title>
 	<?php echo $js; // hai pen?>
-	<?php echo $css; ?>
+	<?php echo $css; //EPEN ?>
 </head>
 <body>
 	<?php echo $header; ?>
