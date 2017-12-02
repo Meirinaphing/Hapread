@@ -15,29 +15,37 @@
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img style="width: 80%; height: 80%" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt="" />
+                            	<center>
+                            <img style="width: 80%; height: 80%;" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt="" />
+                            	</center>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
 								
 								  <!-- Wrapper for slides -->
+                                  <center>
 								    <div class="carousel-inner">
+                                    
 										<div class="item active">
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book2.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book3.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book2.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book3.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
 										</div>
+                                        
+                                      
+                                      
+										<div class="item" >
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book5.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book2.jpg'); ?>" alt=""></a>
+										</div>
+                                        
 										<div class="item">
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book5.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book2.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
+										  <a href=""><img style="width: 20%; height: 20%;" src="<?php echo base_url('assets/images/home/book3.jpg'); ?>" alt=""></a>
 										</div>
-										<div class="item">
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
-										  <a href=""><img style="width: 20%; height: 20%" src="<?php echo base_url('assets/images/home/book3.jpg'); ?>" alt=""></a>
-										</div>
-										
-									</div>
+								</div>
+								</center>
 
 								  <!-- Controls -->
 								  <a class="left item-control" href="#similar-product" data-slide="prev">
@@ -50,8 +58,9 @@
 
 						</div>
 						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+							<div class="product-information"><!--/product-information (new itu untuk tanda baru) pojok kiri yg -->
+								              
+								<img src="<?php echo base_url('assets/images/home/new-left.png'); ?>" class="newarrival" alt="" />                 
 								<h1>Divergent</h1>
 								<p>Product ID: NVL001</p>
 								<span>
