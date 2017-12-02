@@ -1,3 +1,18 @@
+<script>
+
+$(function(){
+    // this will get the full URL at the address bar
+    var url = window.location.href; 
+
+    // passes on every "a" tag 
+    $("#isinav a").each(function() {
+            // checks if its the same on the address bar
+        if(url == (this.href)) { 
+            $(this).closest("a").addClass("active");
+        }
+    });
+});
+</script>
 
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
@@ -36,7 +51,7 @@
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
+							<ul class="nav navbar-nav" >
 								<li><a href="<?php echo base_url('index.php/Home/account'); ?>"><i class="fa fa-user"></i> Account</a></li>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
 								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
@@ -62,7 +77,7 @@
 							</button>
 						</div>
 						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
+							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
 								<li><a href="<?php echo base_url('index.php/Home/'); ?>" class="active">Home</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/shop'); ?>">Shop</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
