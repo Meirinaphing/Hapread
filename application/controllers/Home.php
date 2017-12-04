@@ -8,7 +8,7 @@ class Home extends CI_Controller{
 		$this->load->helper('url');	
 		$this->load->model('m_login');
 		$this->load->model('m_data');
- 
+
 	}
 
 	public function index(){
@@ -102,24 +102,28 @@ class Home extends CI_Controller{
 		$cek = $this->m_login->cek_login("account",$where)->num_rows();
 		
 		if($cek > 0){
- 
+
 			$data_session = array(
 				'email' => $email,
 				'status' => "login"
 				);
- 
+
 			$this->session->set_userdata($data_session);
 			redirect(base_url());
- 
+
 		}else{
-		echo '<script language="javascript" type="text/javascript">
-		alert("login gagal cek id dan password anda");
-	</script>';
+			echo '<script language="javascript" type="text/javascript">alert("login gagal cek id dan password anda");
+			window.location = "'.base_url().'Home/login"; </script>';
+			$data_session = array(
+				'status' => "gagal"
+				);
+
+			$this->session->set_userdata($data_session);
 		}
 		
-			redirect(base_url('home/login'));
+			// redirect(base_url('home/login'));
 	}
- 
+
 	function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url());
@@ -130,16 +134,27 @@ class Home extends CI_Controller{
 		$email = $this->input->post('email');
 		$password = $this->input->post('pass');
 		$jeniskelamin = $this->input->post('jk');
- 
+
 		$data = array(
 			'nama' => $nama,
 			'email' => $email,
 			'password' => md5($password),
 			'jeniskelamin' =>$jeniskelamin,
-						
+
 			);
 		$this->m_data->input_data($data,'account');
-		redirect(base_url('home/login'));
+		
+		$data_session = array(
+			'email' => $email,
+			'status' => "login"
+			);
+
+		$this->session->set_userdata($data_session);
+
+		echo '<script language="javascript" type="text/javascript">alert("Berhasil~");
+		window.location = "'.base_url().'";</script>';
+		
+		// redirect(base_url('home/login'));
 	}
 }
 

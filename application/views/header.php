@@ -72,7 +72,6 @@ $(function(){
 						?>
                         
 							<ul class="nav navbar-nav" id="isinav" >
-								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
                         <?php } ?>
