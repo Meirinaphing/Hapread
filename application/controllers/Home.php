@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller{
+	
 	function __construct(){
 		parent::__construct();	
 		$this->load->helper('url');	
@@ -102,15 +103,25 @@ class Home extends CI_Controller{
 		$cek = $this->m_login->cek_login("account",$where)->num_rows();
 		
 		if($cek > 0){
+			if($email=="admin@admin.com"){
+				$data_session = array(
+					'email' => $email,
+					'status' => "admin"
+					);
 
-			$data_session = array(
-				'email' => $email,
-				'status' => "login"
-				);
+				$this->session->set_userdata($data_session);
+				redirect(base_url(admin));
+				
+			}else{
 
-			$this->session->set_userdata($data_session);
-			redirect(base_url());
+				$data_session = array(
+					'email' => $email,
+					'status' => "login"
+					);
 
+				$this->session->set_userdata($data_session);
+				redirect(base_url());
+			}
 		}else{
 			echo '<script language="javascript" type="text/javascript">alert("login gagal cek id dan password anda");
 			window.location = "'.base_url().'Home/login"; </script>';
