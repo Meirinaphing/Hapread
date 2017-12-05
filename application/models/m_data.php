@@ -7,4 +7,9 @@ class M_data extends CI_Model{
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
+	function get_account($email){
+		$query = $this->db->get_where("account", array('email' => $email));
+		$result = $query->result_array();
+		return $result;
+	}
 }
