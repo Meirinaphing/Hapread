@@ -60,7 +60,7 @@ $(function(){
 							?>
                             	<ul class="nav navbar-nav" id="isinav" >
                                 
-								<li><a href="<?php echo base_url('index.php/Home/account'); ?>"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="<?php echo base_url('index.php/Home/account'); ?>"><i class="fa fa-user"></i> <?php echo $this->session->userdata('email'); ?></a></li>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
 								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
@@ -72,7 +72,7 @@ $(function(){
 						?>
                         
 							<ul class="nav navbar-nav" id="isinav" >
-								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login / SignUp</a></li>
 							</ul>
                         <?php } ?>
 						</div>

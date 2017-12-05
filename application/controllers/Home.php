@@ -83,6 +83,9 @@ class Home extends CI_Controller{
 	}
 
 	public function account(){
+		$a=$this->session->userdata('email');
+		$data['account'] = $this->m_data->get_account($a);
+
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);
 		$data['header'] = $this->load->view('header', NULL, TRUE);
