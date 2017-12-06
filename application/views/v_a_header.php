@@ -54,7 +54,7 @@ $(function(){
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="<?php echo base_url('index.php/Home'); ?>"><img src="<?php echo base_url('assets/images/home/logoo.png'); ?>" alt="" /></a>
+							<a href="<?php echo base_url('Home'); ?>"><img src="<?php echo base_url('assets/images/home/logoo.png'); ?>" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -95,7 +95,7 @@ $(function(){
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
-								<li><a href="<?php echo base_url(); ?>" >Home</a></li>
+								<li><a href="<?php echo base_url('admin'); ?>" >Home</a></li>
 								<li><a href="<?php echo base_url('Home/shop'); ?>">Shop</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">

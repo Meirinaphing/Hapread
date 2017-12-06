@@ -18,11 +18,36 @@ class Admin extends CI_Controller{
  
 	function index(){
 		
+        // instance object
+        $crud = new grocery_CRUD();
+        // pilih tabel yang akan digunakan
+        $crud->set_theme('datatables');
+		$crud->set_table('buku');
 		
- 		$data['a'] =$this->session->userdata('status');
-		$this->load->view('v_admin',$data);
+        // custom field yang ingin ditampilkan
+        $crud->columns('judul','gambar','stock','harga');
+	
+		
+        // set validation rule
+ $crud->field_type('genre','multiselect',
+array( "Romance","Comedy","Sci-fi"));
+ $crud->field_type('genre','multiselect',
+array( "Romance","Comedy","Sci-fi"));
+ 
+        //upload
+		$crud->set_field_upload('gambar','assets/buku');
+		
+		// simpan hasilnya kedalam variabel output
+        $output = $crud->render();
+        $this->load->view('v_admin', $output);
+		
+		
+		
+ 		//$data['a'] =$this->session->userdata('status');
+		//$this->load->view('v_admin',$data);
 		
 	}
+	
     public function account() {
         // instance object
         $crud = new grocery_CRUD();
@@ -32,10 +57,8 @@ class Admin extends CI_Controller{
 		
         // custom field yang ingin ditampilkan
         $crud->columns('email','nama','jeniskelamin','banyakpesanan');
-		$crud->field_type('jeniskelamin','dropdown',
-array('Pria' => 'Pria', 'Wanita' => 'Wanita'));
+		$crud->field_type('jeniskelamin','dropdown',array('Pria' => 'Pria', 'Wanita' => 'Wanita'));
 		$crud->field_type('password', 'password');
-		$crud->callback_before_insert(array($this,'encrypt_pw'));
 		$crud->field_type('nohp', 'integer');
 		
         // set validation rule
@@ -51,9 +74,11 @@ array('Pria' => 'Pria', 'Wanita' => 'Wanita'));
         $crud->set_rules('kodepos','kodepos','required');
         
         
+		$crud->callback_before_insert(array($this,'encrypt_pw'));
+		$crud->callback_before_update(array($this,'encrypt_pw'));
 		// simpan hasilnya kedalam variabel output
         $output = $crud->render();
-        $this->load->view('coba', $output);
+        $this->load->view('v_account', $output);
     }
 	
 	 function encrypt_pw($post_array) {

@@ -5,7 +5,7 @@
 		$hea = $this->load->view('v_a_header', NULL, TRUE);
 		$footer = $this->load->view('v_a_footer', NULL, TRUE);
         ?>
-    <link rel="icon" type="text/css" href="<?php echo base_url('assets/images/home/mini_logo.jpg'); ?>">
+<link rel="icon" type="text/css" href="<?php echo base_url('assets/images/home/mini_logo.jpg'); ?>">
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url('assets/css/prettyPhoto.css'); ?>" rel="stylesheet">
@@ -24,7 +24,7 @@
 <script src="<?php echo base_url('assets/js/contact.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/gmaps.js'); ?>"></script>
     
-        <title>GROCERY GRUD - Belajarphp.net</title>
+        <title>Hapread Online Bookstore</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php foreach ($css_files as $file): ?>
