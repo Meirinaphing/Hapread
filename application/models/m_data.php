@@ -20,4 +20,9 @@ class M_data extends CI_Model{
 		$this->db->where('iduser',$where);
 		$this->db->update('account',$data);
 	}
+	function get_all_book(){
+		$query = $this->db->get("buku");
+		$result = $query->result_array();
+		return $result;
+	}
 }
