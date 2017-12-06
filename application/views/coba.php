@@ -2,8 +2,8 @@
 <html>
     <head>
     <?php
-		$hea = $this->load->view('header', NULL, TRUE);
-		$footer = $this->load->view('footer', NULL, TRUE);
+		$hea = $this->load->view('v_a_header', NULL, TRUE);
+		$footer = $this->load->view('v_a_footer', NULL, TRUE);
         ?>
     <link rel="icon" type="text/css" href="<?php echo base_url('assets/images/home/mini_logo.jpg'); ?>">
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">

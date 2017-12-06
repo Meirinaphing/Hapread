@@ -21,9 +21,16 @@ $(function(){
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +62 812 3456 7890</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> hapread@domain.com</a></li>
+							<ul class="nav nav-pills">		
+								<li><a href="#"><i></i>Account 						
+                            	<?php
+                                $em=$this->session->userdata('email');
+								$account=$this->m_data->get_account($em);
+								foreach($account as $row){
+								?>
+                                (<?php echo $row['nama']; ?>) </a>
+                                </li>
+                                <?php } ?>
 							</ul>
 						</div>
 					</div>
@@ -53,36 +60,21 @@ $(function(){
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
                         <?php
-						$a=$this->session->userdata('status');
-							
-						if(isset($a) and $a=="login"){
-							
+													
 							?>
                             	<ul class="nav navbar-nav" id="isinav" >
-                                	<?php 
-								$em=$this->session->userdata('email');
-								$account=$this->m_data->get_account($em);
-								foreach($account as $row){ 
+								<?php 
+ 
 								
 								?>
                                 
-								<li><a href="<?php echo base_url('home/account'); ?>"><i class="fa fa-user"></i><?php echo $row['nama']; ?>
+								<li><a href="<?php echo base_url('admin/account'); ?>"><i class="fa fa-user"></i>account
                                 </a></li>
-                                <?php } ?>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
 								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
-							</ul>                            
-                            <?php
-								
-						}else{
-						?>
-                        
-							<ul class="nav navbar-nav" id="isinav" >
-								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login / SignUp</a></li>
-							</ul>
-                        <?php } ?>
+							</ul>  
 						</div>
 					</div>
 				</div>

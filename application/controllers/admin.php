@@ -4,19 +4,26 @@ class Admin extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 	
+		$this->load->helper('url');	
+		$this->load->model('m_login');
+		$this->load->model('m_data');
+	
+	
 		if($this->session->userdata('status') != "admin"){
 			redirect(base_url("login"));
+		
 		}
+		
 	}
  
-	function indexasd(){
+	function index(){
 		
 		
  		$data['a'] =$this->session->userdata('status');
 		$this->load->view('v_admin',$data);
 		
 	}
-    public function index() {
+    public function account() {
         // instance object
         $crud = new grocery_CRUD();
         // pilih tabel yang akan digunakan
