@@ -6,6 +6,22 @@
 	<title>Hapread Online Bookstore</title>
 	<?php echo $js; ?>
 	<?php echo $css; ?>
+	
+	<script>
+		function cekpss(s){
+			var s=s;
+			var	ps = document.getElementById('newpass').value;
+			if(s == ps){
+
+			}else{
+				document.getElementById('repass').value="";
+				alert("Password dan RePasword tidak cocok silahkan Periksa Kembali");
+				document.getElementById('newpass').focus();
+			}
+
+		}
+	</script>
+
 </head>
 <body>
 	<?php echo $header; ?>
@@ -23,25 +39,38 @@
 					<h4 class="modal-title">Edit Identitas</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="post" action="<?php echo base_url().'index.php/Home/edit_account'; ?>">
 						<div class="form-group">
 							<label class="control-label col-sm-2">Nama : </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="nama" name="nama" placeholder="Edit Nama Anda" value="<?php echo $row['nama']; ?>">
+								<input type="text" class="form-control" id="nama" name="nama" placeholder="Edit Nama Anda" value="<?php echo $row['nama']; ?>" required>
+								<input type="hidden" id="id" name="id" value="<?php echo $row['iduser']; ?>">
+
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2">Email : </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Edit Email Anda" value="<?php echo $row['email']; ?>">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Edit Email Anda" value="<?php echo $row['email']; ?>" disabled>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2">Jenis Kelamin : </label>
 							<div class="col-sm-10">
 								<select name="jk" id="jk">
-									<option>Pria</option>
-									<option>Wanita</option>
+									<?php
+									if($row['jeniskelamin']=="Pria"){
+										?>
+										<option>Pria</option>
+										<option>Wanita</option>
+										<?php
+									}else{
+										?>
+										<option>Wanita</option>
+										<option>Pria</option>
+										<?php
+									}
+									?>
 								</select>
 							</div>
 						</div>
@@ -75,11 +104,53 @@
 								<input type="text" class="form-control" id="nohp" name="nohp" placeholder="Edit No HP Anda" value="<?php echo $row['nohp']; ?>">
 							</div>
 						</div>
-					</form>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary" value="Update">
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal2" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit Password</h4>
 				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-primary" value="Update">
-				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" method="post" action="<?php echo base_url().'index.php/Home/edit_password'; ?>">
+						<div class="form-group">
+							<label class="control-label col-sm-2">Old Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Masukkan password lama Anda" required>
+								<input type="hidden" name="pass" value="<?php echo $row['password']; ?>">
+								<input type="hidden" name="id" value="<?php echo $row['iduser']; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">New Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="newpass" name="newpass" placeholder="Masukkan password Anda" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Re-type Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="repass" onChange="cekpss(this.value)" name="repass" placeholder="Masukkan ulang password Anda" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary" value="Update">
+					</div>
+				</form>
 			</div>
 
 		</div>
@@ -110,7 +181,7 @@
 								<p> Kodepos </p>
 								<p> No HP </p>
 								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit Identitas</button>
-								<button class="btn btn-primary">Edit Password</button>
+								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Password</button>
 								<br><br><br>
 							</div>
 							<div class="form-two">

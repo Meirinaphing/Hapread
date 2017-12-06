@@ -12,4 +12,12 @@ class M_data extends CI_Model{
 		$result = $query->result_array();
 		return $result;
 	}
+	function update_account($data, $where){
+		$this->db->where('iduser',$where);
+		$this->db->update('account',$data);
+	}
+	function update_password($data, $where){
+		$this->db->where('iduser',$where);
+		$this->db->update('account',$data);
+	}
 }
