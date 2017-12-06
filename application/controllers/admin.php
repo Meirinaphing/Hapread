@@ -29,13 +29,15 @@ class Admin extends CI_Controller{
 	
 		
         // set validation rule
- $crud->field_type('genre','multiselect',
-array( "Romance","Comedy","Sci-fi"));
- $crud->field_type('genre','multiselect',
-array( "Romance","Comedy","Sci-fi"));
- 
+ 		$crud->field_type('genre','multiselect',
+			   array( "Romance","Comedy","Sci-fi"));
+ 		$crud->field_type('category','multiselect',
+			   array( "Romance","Comedy","Sci-fi"));
+ 		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock','category','genre');   
+
         //upload
 		$crud->set_field_upload('gambar','assets/buku');
+		$crud->set_field_upload('cover_back','assets/buku');
 		
 		// simpan hasilnya kedalam variabel output
         $output = $crud->render();
@@ -62,6 +64,7 @@ array( "Romance","Comedy","Sci-fi"));
 		$crud->field_type('nohp', 'integer');
 		
         // set validation rule
+		
         $crud->set_rules('email','email','valid_email');
         $crud->set_rules('email','email','required');
         $crud->set_rules('password','password','required');
