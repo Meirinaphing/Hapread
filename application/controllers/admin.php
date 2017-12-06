@@ -33,7 +33,7 @@ class Admin extends CI_Controller{
 			   array( "Romance","Comedy","Sci-fi"));
  		$crud->field_type('category','multiselect',
 			   array( "Romance","Comedy","Sci-fi"));
- 		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock','category','genre');   
+ 		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock');   
 
         //upload
 		$crud->set_field_upload('gambar','assets/buku');
