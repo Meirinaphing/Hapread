@@ -170,6 +170,51 @@ class Home extends CI_Controller{
 		
 		// redirect(base_url('home/login'));
 	}
+
+	function edit_account(){
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$jeniskelamin = $this->input->post('jk');
+		$alamat = $this->input->post('alamat');
+		$kota = $this->input->post('kota');
+		$provinsi = $this->input->post('provinsi');
+		$kodepos = $this->input->post('kodepos');
+		$nohp = $this->input->post('nohp');
+
+		$data = array(
+				'nama' => $nama,
+				'jeniskelamin' => $jeniskelamin,
+				'alamat' => $alamat,
+				'kota' => $kota,
+				'provinsi' => $provinsi,
+				'kodepos' => $kodepos,
+				'nohp' => $nohp
+			);
+
+		$this->m_data->update_account($data, $id);
+
+		redirect(base_url('home/account'));
+	}
+
+	function edit_password(){
+		$oldpass = $this->input->post('oldpass');
+		$newpass = $this->input->post('newpass');
+		$pass = $this->input->post('pass');
+		$id = $this->input->post('id');
+
+		if(md5($oldpass) == $pass){
+			$data = array('password'=>md5($newpass));
+			$this->m_data->update_password($data,$id);
+
+			echo '<script language="javascript" type="text/javascript">alert("Berhasil mengubah Password");
+			window.location = "'.base_url().'Home/account"; </script>';
+		}else{
+			echo '<script language="javascript" type="text/javascript">alert("Gagal mengupdate password \nPassword lama Anda tidak cocok");
+			window.location = "'.base_url().'Home/account"; </script>';
+		}
+
+	}
 }
 
 
