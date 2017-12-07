@@ -20,9 +20,14 @@ class M_data extends CI_Model{
 		$this->db->where('iduser',$where);
 		$this->db->update('account',$data);
 	}
-	function get_all_book(){
-		$query = $this->db->get("buku");
-		$result = $query->result_array();
-		return $result;
+	function get_all_book($number,$offset){//pagination
+	
+		return $query = $this->db->get('buku',$number,$offset)->result();
+		//$query = $this->db->get("buku");
+		//$result = $query->result_array();
+		//return $result;
+	}
+		function jumlah_buku(){//pagination
+		return $this->db->get('buku')->num_rows();
 	}
 }
