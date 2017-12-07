@@ -27,7 +27,7 @@
 								<img src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 								<h2>Rp. <?php echo $row->harga;?></h2>
 								<p><?php echo $row->judul ;?></p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+								<a href="<?php echo base_url().'home/input_cart/'.$row->idbuku; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>
 							</div>
 						</div>
 					</div>

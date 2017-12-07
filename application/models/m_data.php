@@ -1,8 +1,14 @@
 <?php 
  
 class M_data extends CI_Model{
+
 	function tampil_account($where,$table){
 		return $this->db->get_where($table,$where);
+	}
+	function tampil_buku($idbuku){
+		$query=$this->db->get_where('buku',array('idbuku' => $idbuku));
+		$result = $query->result_array();
+		return $result;
 	}
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
@@ -27,7 +33,18 @@ class M_data extends CI_Model{
 		//$result = $query->result_array();
 		//return $result;
 	}
-		function jumlah_buku(){//pagination
+
+	function jumlah_buku(){//pagination
 		return $this->db->get('buku')->num_rows();
 	}
+	function get_temp($email){
+		$query = $this->db->get_where("k_temp", array('email' => $email));
+		$result = $query->result_array();
+		return $result;
+	}
+	function hapus_data($where,$table){
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+	
 }

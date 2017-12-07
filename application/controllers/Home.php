@@ -98,6 +98,9 @@ class Home extends CI_Controller{
 	}
 
 	public function cart(){
+		$a=$this->session->userdata('email');
+		$data['temp'] = $this->m_data->get_temp($a);
+		
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);
 		$data['header'] = $this->load->view('header', NULL, TRUE);
@@ -106,6 +109,34 @@ class Home extends CI_Controller{
 
 		$this->load->view('cartview', $data);
 	}
+	function input_cart($idbuku){
+
+		$email=$this->session->userdata('email');
+		
+		$databuku = $this->m_data->tampil_buku($idbuku);
+			foreach ($databuku as $row) { 
+				$harga=$row['harga'];
+			}
+		$jumlah=1;
+		$data = array(
+			'email' => $email,
+			'idbuku' => $idbuku,
+			'jumlah' => $jumlah,
+			'harga' => $harga,
+			'totharga' => $harga
+			);
+		$this->m_data->input_data($data,'k_temp');
+		
+		redirect(base_url('home/shop'));
+	}
+	function hapus_cart($id){
+		$email=$this->session->userdata('email');
+		$where = array('idbuku' => $id,'email'=> $email);
+		$this->m_data->hapus_data($where,'k_temp');
+		redirect('home/cart');
+	}
+
+
 
 	public function checkout(){
 		$data['js'] = $this->load->view('js', NULL, TRUE);

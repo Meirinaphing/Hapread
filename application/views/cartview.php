@@ -19,6 +19,13 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
+            
+            
+            
+           
+                                
+                                
+                                
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -31,58 +38,47 @@
 							<td></td>
 						</tr>
 					</thead>
+                    <?php
+                    foreach ($temp as $row) {
+						
+						$que=$this->m_data->tampil_buku($row['idbuku']);
+						foreach ($que as $buk) {
+							
+							
+					?>
 					<tbody>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img width="170pt" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
+                            
+								<a href=""><img width="120pt" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Divergent</a></h4>
+								<h4><a href=""><?php echo $buk['judul']; ?></a></h4>
 								<p>Product ID: NVL001</p>
 							</td>
 							<td class="cart_price">
-								<p>Rp 59.000</p>
+								<p><?php echo $row['harga']; ?></p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2" disabled>
 									<a class="cart_quantity_down" href=""> - </a>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">Rp 59.000</p>
+								<p class="cart_total_price"><?php echo $row['totharga']; ?></p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img width="170pt" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Sunshine Becomes You</a></h4>
-								<p>Product ID: NVL004</p>
-							</td>
-							<td class="cart_price">
-								<p>Rp 30.000</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">Rp 30.000</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            
+								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="btn cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					</tbody>
+                    <?php
+						}
+                    }
+                    ?>
 				</table>
 			</div>
 		</div>

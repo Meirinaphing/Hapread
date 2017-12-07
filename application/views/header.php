@@ -47,7 +47,7 @@ $(function(){
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="<?php echo base_url('index.php/Home'); ?>"><img src="<?php echo base_url('assets/images/home/logoo.png'); ?>" alt="" /></a>
+							<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/images/home/logoo.png'); ?>" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -70,8 +70,8 @@ $(function(){
                                 </a></li>
                                 <?php } ?>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
-								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="<?php echo base_url('Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="<?php echo base_url('Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>                            
                             <?php
@@ -80,7 +80,7 @@ $(function(){
 						?>
                         
 							<ul class="nav navbar-nav" id="isinav" >
-								<li><a href="<?php echo base_url('index.php/Home/login'); ?>"><i class="fa fa-lock"></i> Login / SignUp</a></li>
+								<li><a href="<?php echo base_url('Home/login'); ?>"><i class="fa fa-lock"></i> Login / SignUp</a></li>
 							</ul>
                         <?php } ?>
 						</div>
@@ -103,6 +103,7 @@ $(function(){
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
+                            <li></li>
 								<li><a href="<?php echo base_url(); ?>" >Home</a></li>
 								<li><a href="<?php echo base_url('Home/shop'); ?>">Shop</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
