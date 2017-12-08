@@ -18,7 +18,14 @@
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
-			</div>                
+			</div>
+            
+            
+            
+           
+                                
+                                
+                                
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -47,7 +54,7 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href=""><?php echo $buk['judul']; ?></a></h4>
-								<p>Product ID: <?php echo $buk['idbuku']; ?></p>
+								<p>Product ID: NVL001</p>
 							</td>
 							<td class="cart_price">
 								<p><?php echo $row['harga']; ?></p>
@@ -55,7 +62,7 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2" disabled>
 									<a class="cart_quantity_down" href=""> - </a>
 								</div>
 							</td>

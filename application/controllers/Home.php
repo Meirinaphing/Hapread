@@ -110,9 +110,34 @@ class Home extends CI_Controller{
 		$this->load->view('cartview', $data);
 	}
 	function input_cart($idbuku){
-
 		$email=$this->session->userdata('email');
-		
+		$cek = $this->m_data->cek_temp($email,$idbuku)->num_rows();
+		if($cek>0){
+		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+		foreach ($datatemp as $dat) { 
+				$harga=$dat['harga'];
+				$jum=$dat['jumlah'];
+			}
+			$jum++;
+			$tot=$jum*$harga;
+		$data = array(
+			'jumlah' => $jum,
+			'totharga' => $tot
+		);
+	 
+		$where = array(
+		'email' => $email,'idbuku' => $idbuku
+		);
+	 
+		$this->m_data->update_data($where,$data,'k_temp');
+		$hasil=$this->m_data->get_temp($email);
+			$jumlah=0;
+				foreach ($hasil as $ju) {
+							$jumlah+=$ju['jumlah'];
+					}
+		echo $jumlah;
+			
+			}else{
 		$databuku = $this->m_data->tampil_buku($idbuku);
 			foreach ($databuku as $row) { 
 				$harga=$row['harga'];
@@ -126,8 +151,13 @@ class Home extends CI_Controller{
 			'totharga' => $harga
 			);
 		$this->m_data->input_data($data,'k_temp');
-		
-		redirect(base_url('home/shop'));
+				$hasil=$this->m_data->get_temp($email);
+			$jumlah=0;
+				foreach ($hasil as $ju) {
+							$jumlah+=$ju['jumlah'];
+					}
+		echo $jumlah;
+		}
 	}
 	function hapus_cart($id){
 		$email=$this->session->userdata('email');

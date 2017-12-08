@@ -7,23 +7,6 @@
 	<title>Hapread Online Bookstore</title>
 	<?php echo $js; ?>
 	<?php echo $css; ?>
-<script type="text/javascript">  
-function add(id){       
-     $.ajax({
-         type: "POST",
-         url: "<?php echo base_url() ;?>"+"home/input_cart/"+id, 
-         data: {kosong:'kosong'},
-         dataType: "text",  
-         cache:false,
-         success: 
-              function(data){
-				  $('#jumlah').html(data);
-                //alert(data);  //as a debugging message.
-              }
-          });// you have missed this bracket
-	 return false;
-}
-    </script>
 </head>
 <body>
 	<?php echo $header; ?>
@@ -44,7 +27,7 @@ function add(id){
 								<img src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 								<h2>Rp. <?php echo $row->harga;?></h2>
 								<p><?php echo $row->judul ;?></p>
-								<a onClick="add('<?php echo $row->idbuku; ?>')" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+								<a href="<?php echo base_url().'home/input_cart/'.$row->idbuku; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>
 							</div>
 						</div>
 					</div>

@@ -42,6 +42,19 @@ class M_data extends CI_Model{
 		$result = $query->result_array();
 		return $result;
 	}
+	function edit_data($table,$where){		
+		$query = $this->db->get_where($table,$where);
+		$result = $query->result_array();
+		return $result;
+	}
+	function cek_temp($email,$idbuku){
+		return $this->db->get_where("k_temp", array('email' => $email,'idbuku' => $idbuku));
+		
+	}
+	function update_data($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
 	function hapus_data($where,$table){
 		$this->db->where($where);
 		$this->db->delete($table);

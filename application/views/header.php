@@ -56,7 +56,12 @@ $(function(){
 						$a=$this->session->userdata('status');
 							
 						if(isset($a) and $a=="login"){
-							
+							$em=$this->session->userdata('email');
+							$hasil=$this->m_data->get_temp($em);
+							$jumlah=0;
+							foreach ($hasil as $ju) {
+									$jumlah+=$ju['jumlah'];
+								}
 							?>
                             	<ul class="nav navbar-nav" id="isinav" >
                                 	<?php 
@@ -71,7 +76,7 @@ $(function(){
                                 <?php } ?>
 <!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
 								<li><a href="<?php echo base_url('Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="<?php echo base_url('Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="<?php echo base_url('Home/cart'); ?>"><i class="fa fa-shopping-cart"> Cart <span class="badge"><div id="jumlah"><?php echo $jumlah; ?></div></span></i> </a></li>
 								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>                            
                             <?php
