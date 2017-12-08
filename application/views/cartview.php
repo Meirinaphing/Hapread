@@ -17,7 +17,7 @@ function tambah(id){
          cache:false,
          success: 
               function(data){
-				  $('#jum').html(data);
+				  $('#ref').html(data);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
@@ -33,7 +33,7 @@ function kurang(id){
          cache:false,
          success: 
               function(data){
-				  $('#jum').html(data);
+				  $('#ref').html(data);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
@@ -80,6 +80,10 @@ function reloadcart(id){
 							<td></td>
 						</tr>
 					</thead>
+                    
+                                    
+                                       
+					<tbody id="ref">
                     <?php
                     foreach ($temp as $row) {
 						
@@ -87,27 +91,25 @@ function reloadcart(id){
 						foreach ($que as $buk) {
 							
 							
-					?>
-					<tbody>
+					?> 
 						<tr>
 							<td class="cart_product">
                             
-								<a href=""><img width="120pt" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
+								<a href=""><img width="120pt" src="<?php echo base_url().'assets/buku/'.$buk["gambar"]; ?>" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href=""><?php echo $buk['judul']; ?></a></h4>
-								<p>Product ID: <?php echo $buk['idbuku']; ?></p>
+								<h4><a href=""><?php echo $buk["judul"]; ?></a></h4>
+								<p>Product ID: <?php echo $buk["idbuku"]; ?></p>
 							</td>
 							<td class="cart_price">
 								<p><?php echo $row['harga']; ?></p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href="" onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
-                                    <div id="jum">
+									<a class="cart_quantity_up"  onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
 									<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
-									</div>
-                                    <a class="cart_quantity_down" href=""onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
+									
+                                    <a class="cart_quantity_down" onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
 								</div>
 							</td>
 							<td class="cart_total">
@@ -118,11 +120,12 @@ function reloadcart(id){
 								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="btn cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-					</tbody>
-                    <?php
+					<?php
 						}
                     }
                     ?>
+                    </tbody>
+                    
 				</table>
 			</div>
 		</div>

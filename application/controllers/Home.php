@@ -189,7 +189,18 @@ class Home extends CI_Controller{
 		);
 	 
 		$this->m_data->update_data($where,$data,'k_temp');
-		echo '<input class="cart_quantity_input" type="text" name="quantity" value="'.$jum.'" autocomplete="off" size="2" disabled >';
+		
+		
+				$a=$this->session->userdata('email');
+		$data['temp'] = $this->m_data->get_temp($a);
+		
+		$data['js'] = $this->load->view('js', NULL, TRUE);
+		$data['css'] = $this->load->view('css', NULL, TRUE);
+		$data['header'] = $this->load->view('header', NULL, TRUE);
+		$data['footer'] = $this->load->view('footer', NULL, TRUE);
+		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
+
+		$this->load->view('ajax_keranjang',$data);
 	
 			
 	}
@@ -216,8 +227,19 @@ class Home extends CI_Controller{
 		);
 	 
 		$this->m_data->update_data($where,$data,'k_temp');
-					
-		echo '<input class="cart_quantity_input" type="text" name="quantity" value="'.$jum.'" autocomplete="off" size="2" disabled >';
+		
+		
+		
+		$a=$this->session->userdata('email');
+		$data['temp'] = $this->m_data->get_temp($a);
+		
+		$data['js'] = $this->load->view('js', NULL, TRUE);
+		$data['css'] = $this->load->view('css', NULL, TRUE);
+		$data['header'] = $this->load->view('header', NULL, TRUE);
+		$data['footer'] = $this->load->view('footer', NULL, TRUE);
+		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
+
+		$this->load->view('ajax_keranjang',$data);
 	
 	}
 	function hapus_cart($id){
