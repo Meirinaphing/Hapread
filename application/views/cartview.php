@@ -56,7 +56,7 @@ function reloadcart(id){
 	 return false;
 }
     </script>
-<body>
+<body id="ref">
 	<?php echo $header; ?>
 
 
@@ -82,8 +82,8 @@ function reloadcart(id){
 					</thead>
                     
                                     
-                                       
-					<tbody id="ref">
+					<?php $gtotal=0; ?>                                       
+					<tbody>
                     <?php
                     foreach ($temp as $row) {
 						
@@ -117,10 +117,12 @@ function reloadcart(id){
 							</td>
 							<td class="cart_delete">
                             
-								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="btn cart_quantity_delete"><i class="fa fa-times"></i></a>
+								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
+                        
 					<?php
+					$gtotal+=$row['totharga'];
 						}
                     }
                     ?>
@@ -180,7 +182,7 @@ function reloadcart(id){
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>Rp 89.000</span></li>
+							<li>Cart Sub Total <span>Rp <?php echo $gtotal ?></span></li>
 							<li>Shipping Cost <span>Free</span></li>
 							<li>Total <span>Rp 89.000</span></li>
 						</ul>
