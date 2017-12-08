@@ -30,9 +30,9 @@ class Admin extends CI_Controller{
 		
         // set validation rule
  		$crud->field_type('genre','multiselect',
-			   array( "Romance","Comedy","Sci-fi"));
+			   array( "Action","Fantasy","Horror","Thriller","Romance","Comedy","Sci-fi"));
  		$crud->field_type('category','multiselect',
-			   array( "Romance","Comedy","Sci-fi"));
+			   array( "Management","Accounting","Business","Fiction","Economics","Politics","Education","Comics","Magazine","Story book","Astronomy","Biology","Chemistry","Computer","Hacking","Artificial Intelligence","Machine Learning","Business Intelligence","Interior Design","Graphic Design","Fashion Design"));	
  		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock');   
 
         //upload
@@ -76,7 +76,11 @@ class Admin extends CI_Controller{
         $crud->set_rules('provinsi','provinsi','required');
         $crud->set_rules('kodepos','kodepos','required');
         
-        
+        // Hilangkan delete, add, dan edit
+        $crud->unset_delete();
+        $crud->unset_edit();
+        $crud->unset_add();
+
 		$crud->callback_before_insert(array($this,'encrypt_pw'));
 		$crud->callback_before_update(array($this,'encrypt_pw'));
 		// simpan hasilnya kedalam variabel output
