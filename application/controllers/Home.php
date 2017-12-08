@@ -242,6 +242,8 @@ class Home extends CI_Controller{
 		$this->load->view('ajax_keranjang',$data);
 	
 	}
+		
+
 	function hapus_cart($id){
 		$email=$this->session->userdata('email');
 		$where = array('idbuku' => $id,'email'=> $email);

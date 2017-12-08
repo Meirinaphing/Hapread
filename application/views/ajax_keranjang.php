@@ -1,4 +1,32 @@
-<?php
+<body>
+	<?php echo $header; ?>
+
+
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>                
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+                    
+                                    
+					<?php $gtotal=0; ?>                                       
+					<tbody>
+                    <?php
                     foreach ($temp as $row) {
 						
 						$que=$this->m_data->tampil_buku($row['idbuku']);
@@ -31,10 +59,82 @@
 							</td>
 							<td class="cart_delete">
                             
-								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="btn cart_quantity_delete"><i class="fa fa-times"></i></a>
+								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
+                        
 					<?php
+					$gtotal+=$row['totharga'];
 						}
                     }
                     ?>
+                    </tbody>
+                    
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>Next Step</h3>
+				<p>Fill your location.</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Province:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+								
+							</li>
+							<li class="single_field">
+								<label>City / District:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+							
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>Rp <?php echo $gtotal ?></span></li>
+							<li>Shipping Cost <span>Free</span></li>
+							<li>Total <span>Rp 89.000</span></li>
+						</ul>
+							<a class="btn btn-default update" href="">Checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+
+	<?php echo $footer; ?>
+</body>
