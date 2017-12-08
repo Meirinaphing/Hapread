@@ -151,13 +151,74 @@ class Home extends CI_Controller{
 			'totharga' => $harga
 			);
 		$this->m_data->input_data($data,'k_temp');
-				$hasil=$this->m_data->get_temp($email);
+			$hasil=$this->m_data->get_temp($email);
 			$jumlah=0;
 				foreach ($hasil as $ju) {
 							$jumlah+=$ju['jumlah'];
 					}
 		echo $jumlah;
 		}
+	}
+	function reloadcart($idbuku){
+			
+		$email=$this->session->userdata('email');
+			$hasil=$this->m_data->get_temp($email);
+			$jumlah=0;
+				foreach ($hasil as $ju) {
+							$jumlah+=$ju['jumlah'];
+					}
+		echo $jumlah;
+	
+	}
+	function tambah_cart($idbuku){
+		$email=$this->session->userdata('email');
+		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+		foreach ($datatemp as $dat) { 
+				$harga=$dat['harga'];
+				$jum=$dat['jumlah'];
+			}
+			$jum++;
+			$tot=$jum*$harga;
+		$data = array(
+			'jumlah' => $jum,
+			'totharga' => $tot
+		);
+	 
+		$where = array(
+		'email' => $email,'idbuku' => $idbuku
+		);
+	 
+		$this->m_data->update_data($where,$data,'k_temp');
+		echo '<input class="cart_quantity_input" type="text" name="quantity" value="'.$jum.'" autocomplete="off" size="2" disabled >';
+	
+			
+	}
+	
+	function kurang_cart($idbuku){
+		$email=$this->session->userdata('email');
+		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+		foreach ($datatemp as $dat) { 
+				$harga=$dat['harga'];
+				$jum=$dat['jumlah'];
+			}
+			$jum--;
+			if($jum<1){
+				$jum=1;
+				}
+			$tot=$jum*$harga;
+		$data = array(
+			'jumlah' => $jum,
+			'totharga' => $tot
+		);
+	 
+		$where = array(
+		'email' => $email,'idbuku' => $idbuku
+		);
+	 
+		$this->m_data->update_data($where,$data,'k_temp');
+					
+		echo '<input class="cart_quantity_input" type="text" name="quantity" value="'.$jum.'" autocomplete="off" size="2" disabled >';
+	
 	}
 	function hapus_cart($id){
 		$email=$this->session->userdata('email');

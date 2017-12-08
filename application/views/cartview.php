@@ -7,6 +7,55 @@
 	<?php echo $js; ?>
 	<?php echo $css; ?>
 </head>
+<script type="text/javascript">  
+function tambah(id){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/tambah_cart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#jum').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+		  reloadcart(id)
+	 return false;
+}
+function kurang(id){       
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/kurang_cart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#jum').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+		  reloadcart(id)
+	 return false;
+}
+function reloadcart(id){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/reloadcart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#jumlah').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+}
+    </script>
 <body>
 	<?php echo $header; ?>
 
@@ -54,9 +103,11 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
+									<a class="cart_quantity_up" href="" onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
+                                    <div id="jum">
 									<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
-									<a class="cart_quantity_down" href=""> - </a>
+									</div>
+                                    <a class="cart_quantity_down" href=""onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
 								</div>
 							</td>
 							<td class="cart_total">

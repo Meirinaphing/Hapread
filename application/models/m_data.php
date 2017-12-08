@@ -42,6 +42,7 @@ class M_data extends CI_Model{
 		$result = $query->result_array();
 		return $result;
 	}
+	
 	function edit_data($table,$where){		
 		$query = $this->db->get_where($table,$where);
 		$result = $query->result_array();
