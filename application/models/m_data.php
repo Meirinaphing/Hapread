@@ -64,5 +64,10 @@ class M_data extends CI_Model{
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+	function slideshow(){
+		$query = $this->db->get("slideshow");
+		$result = $query->result_array();
+		return $result;
+	}
 	
 }
