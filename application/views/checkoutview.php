@@ -17,11 +17,54 @@ function updateregion(region){
          cache:false,
          success: 
               function(data){
-				  refreshcart()
+				  refreshcart();
+		  		  reloadcart(id);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
-		  reloadcart(id)
+	 return false;
+	}
+	function updatehp(hp){
+		 alert(hp);
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_hp/", 
+         data: {hp:hp},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){ 
+               // alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+	}
+	function updatealamat(alamat){
+	  $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_alamat/", 
+         data: {alamat:alamat},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+               //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+	}
+	function updatepos(pos){
+	  $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_pos/", 
+         data: {pos:pos},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+               //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
 	 return false;
 	}
 
@@ -34,11 +77,11 @@ function tambah(id){
          cache:false,
          success: 
               function(data){
-				  refreshcart()
+				  refreshcart();
+		 		 reloadcart(id);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
-		  reloadcart(id)
 	 return false;
 }
 function kurang(id){       
@@ -87,6 +130,40 @@ function reloadcart(id){
           });// you have missed this bracket
 	 return false;
 }
+
+function proses(){
+	var nama=document.getElementById('nama').value;
+	var hp=document.getElementById('hp').value;
+	var alamat=document.getElementById('alamat').value;
+	var kodepos=document.getElementById('kodepos').value;
+	var provinsi=document.getElementById('provinsi').value;
+	var note=document.getElementById('note').value;
+	if( nama==""){alert('Silahkan Isi Nama Penerima Sebelum Melanjutkan');}
+	else if(hp==""){alert('Silahkan Isi No Hp Penerima Sebelum Melanjutkan');}
+	else if(alamat==""){alert('Silahkan Isi Alamat Penerima Sebelum Melanjutkan');}
+	else if(kodepos==""){alert('Silahkan Isi Kode Pos Penerima Sebelum Melanjutkan');} 
+	else if(provinsi=="-- State / Province / Region --" ){alert('Silahkan Pilih Provinsi Penerima Sebelum Melanjutkan');}
+	else{
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/proses/", 
+         data: {nama:nama,
+		 		hp: hp,
+		 		alamat:alamat,
+		 		kodepos:kodepos,
+		 		provinsi:provinsi,
+		 		note:note
+		 		},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+	}
+}
     </script>
 <body>
 	<?php echo $header; ?>
@@ -109,6 +186,7 @@ function reloadcart(id){
 										$pro=$account['provinsi'];
 										$alamat=$account['alamat'];
 										$nohp=$account['nohp'];
+										$kodepos=$account['kodepos'];
 									}
 									?>
 			<div class="shopper-informations">
@@ -118,18 +196,18 @@ function reloadcart(id){
 							<p>Shopper Information</p>
 							<div class="form-one">
 								<form>
-									<input type="text" placeholder="Receiver Name" value="<?php echo $nama;?>">
-									<input type="text" placeholder="Email" value="<?php echo $email;?>">
-									<input type="text" placeholder="Phone" value="<?php echo $nohp;?>">
-									<textarea rows="5" placeholder="Address"value="<?php echo $alamat;?>"></textarea>
+									<input id="nama" type="text" placeholder="Receiver Name" value="<?php echo $nama;?>">
+									<input id="hp" type="number" placeholder="Phone" onChange="updatehp(this.value)" value="<?php echo $nohp;?>">
+									<textarea id="alamat" rows="5" placeholder="Address" onChange="updatealamat(this.value)" value=""><?php echo $alamat;?></textarea>
 									<!-- <input type="text" placeholder="Address"> -->
 								</form>
 							</div>
 							<div class="form-two">
 								<form>
-									<input type="text" placeholder="Zip / Postal Code *">
+									<input id="kodepos"= type="number" placeholder="Zip / Postal Code *" onChange="updatepos(this.value)" value="<?php echo $kodepos;?>">
 									
-									<select onChange="updateregion(this.value)">
+									<select id="provinsi" onChange="updateregion(this.value)" >
+                                    
 										<option>-- State / Province / Region --</option>
 										<option>Aceh</option>
                                         <option>Bali</option>
@@ -172,7 +250,7 @@ function reloadcart(id){
 					<div class="col-sm-5">
 						<div class="order-message">
 							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+							<textarea id="note" name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
 						</div>	
 					</div>					
 				</div>
@@ -249,7 +327,11 @@ function reloadcart(id){
 										<td>Rp.<?php echo $gtotal ?></td>
 									</tr>
                                      <?php
-									if($pro=='Jakarta'){$sp=10000;}else{$sp=30000;}
+									if($pro=='Jakarta'){
+										$sp=10000;
+									}else{
+										$sp=30000;
+										}
 									$t_akhir=$sp+$gtotal;
 									?>
 									<tr class="shipping-cost">
@@ -260,13 +342,17 @@ function reloadcart(id){
 										<td>Total</td>
 										<td><span>Rp.<?php echo $t_akhir; ?></span></td>
 									</tr>
-                                    
-                        
                                     <tr>
+										<td></td>
+										<td>
+                                        <?php if($gtotal>0){ ?>
+                                        	<button class="btn btn-success" onclick="proses()">Proses</button>
+                                        <?php } ?>
+                                        </td>
                                     </tr>
 								</table>
                                 
-							</td>
+							</td>	
 						</tr>
                     </tbody>
                     </div>

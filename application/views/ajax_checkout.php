@@ -69,6 +69,11 @@
                                     
                         
                                     <tr>
+										<td></td>
+										<td>
+                                        <?php if($gtotal>0){ ?>
+                                        	<button class="btn btn-success" onclick="proses()">Proses</button>
+                                        <?php } ?></td>
                                     </tr>
 								</table>
                                 

@@ -18,10 +18,11 @@ function tambah(id){
          success: 
               function(data){
 				  $('#ref').html(data);
+				  reloadcart(id);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
-		  reloadcart(id)
+		  
 	 return false;
 }
 function kurang(id){       
@@ -34,6 +35,7 @@ function kurang(id){
          success: 
               function(data){
 				  $('#ref').html(data);
+				  reloadcart(id);
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket

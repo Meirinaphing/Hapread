@@ -54,7 +54,9 @@ class M_data extends CI_Model{
 	}
 	function cek_temp($email,$idbuku){
 		return $this->db->get_where("k_temp", array('email' => $email,'idbuku' => $idbuku));
-		
+	}
+	function cek_jual(){
+		return $this->db->get('jual');
 	}
 	function update_data($where,$data,$table){
 		$this->db->where($where);

@@ -194,9 +194,7 @@ class Home extends CI_Controller{
 		);
 	 
 		$this->m_data->update_data($where,$data,'k_temp');
-		
-		
-				$a=$this->session->userdata('email');
+		$a=$this->session->userdata('email');
 		$data['temp'] = $this->m_data->get_temp($a);
 		
 		$data['js'] = $this->load->view('js', NULL, TRUE);
@@ -382,6 +380,39 @@ class Home extends CI_Controller{
 		
 		
 		}
+	function update_hp(){
+		$hp = $this->input->post('hp');
+		$id=$this->session->userdata('email');
+		$data = array(
+				'nohp' => $hp,
+			);
+
+		$this->m_data->update_region($data, $id);
+		
+		
+		}
+		function update_alamat(){
+		$alamat = $this->input->post('alamat');
+		$id=$this->session->userdata('email');
+		$data = array(
+				'alamat' => $alamat,
+			);
+
+		$this->m_data->update_region($data, $id);
+		
+		
+		}
+	function update_pos(){
+		$pos = $this->input->post('pos');
+		$id=$this->session->userdata('email');
+		$data = array(
+				'kodepos' => $pos,
+			);
+
+		$this->m_data->update_region($data, $id);
+		
+		
+		}
 	function edit_account(){
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
@@ -444,6 +475,57 @@ class Home extends CI_Controller{
 
 		echo '<script language="javascript" type="text/javascript">alert("Pesan Anda Telah Terkirim");
 		window.location = "'.base_url().'Home/contact"; </script>';
+	}
+	function proses(){
+		$nama = $this->input->post('nama');
+		$hp = $this->input->post('hp');
+		$alamat = $this->input->post('alamat');
+		$pos = $this->input->post('kodepos');
+		$provinsi = $this->input->post('provinsi');
+		$note = $this->input->post('note');
+		$id=$this->session->userdata('email');
+		$tgl=date('d-m-y');
+		
+		$cek = $this->m_data->cek_jual()->num_rows();
+		$idjual = $cek + 1;
+		
+		$data = array(
+			'idjual' => $idjual,
+			'email' => $id,
+			'status' => 'Belum Di Bayar',
+			'alamat' => $alamat,
+			'hp' => $hp,
+			'provinsi' => $provinsi,
+			'kodepos' => $pos,
+			'note' => $note,
+			'tgl' => $tgl,
+			'nores' => '-'
+			);
+		$this->m_data->input_data($data,'jual');
+		
+		$temp = $this->m_data->get_temp($id);
+		foreach ($temp as $row) {
+		$idbu=$row['idbuku'];
+		$jum=$row['jumlah'];
+		$har=$row['harga'];
+		$tothar=$row['totharga'];
+		
+		$a = array(
+			'idjual' => $idjual,
+			'email' => $id,
+			'idbuku' => $idbu,
+			'jumlah' => $jum,
+			'harga' => $har,
+			'totalharga' => $tothar
+			);
+			
+			
+		
+		$this->m_data->input_data($a,'jual_detil');
+		$where = array('idbuku' => $idbu,'email'=> $id);
+		$this->m_data->hapus_data($where,'k_temp');
+		
+		}
 	}
 }
 
