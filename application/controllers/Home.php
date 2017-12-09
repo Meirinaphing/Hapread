@@ -254,6 +254,8 @@ class Home extends CI_Controller{
 
 
 	public function checkout(){
+		$a=$this->session->userdata('email');
+		$data['temp'] = $this->m_data->get_temp($a);
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);
 		$data['header'] = $this->load->view('header', NULL, TRUE);
@@ -261,6 +263,19 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('checkoutview', $data);
+	}
+	function refreshcart($idbuku){
+			
+		$a=$this->session->userdata('email');
+		$data['temp'] = $this->m_data->get_temp($a);
+		$data['js'] = $this->load->view('js', NULL, TRUE);
+		$data['css'] = $this->load->view('css', NULL, TRUE);
+		$data['header'] = $this->load->view('header', NULL, TRUE);
+		$data['footer'] = $this->load->view('footer', NULL, TRUE);
+		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
+
+		$this->load->view('ajax_checkout', $data);
+	
 	}
 
 	public function account(){
@@ -351,7 +366,17 @@ class Home extends CI_Controller{
 		
 		// redirect(base_url('home/login'));
 	}
+	function update_region($region){
 
+		$id=$this->session->userdata('email');
+		$data = array(
+				'provinsi' => $region,
+			);
+
+		$this->m_data->update_region($data, $id);
+		
+		
+		}
 	function edit_account(){
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');

@@ -7,7 +7,11 @@
 	<title>Hapread Online Bookstore</title>
 	<?php echo $js; ?>
 	<?php echo $css; ?>
-<script type="text/javascript">  
+<script type="text/javascript">
+
+function alertlogin(){
+	 alert('Please login before buy');
+}
 function add(id){       
      $.ajax({
          type: "POST",
@@ -44,7 +48,16 @@ function add(id){
 								<img src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 								<h2>Rp. <?php echo $row->harga;?></h2>
 								<p><?php echo $row->judul ;?></p>
+                       			  <?php
+									$a=$this->session->userdata('status');
+									if(isset($a) and $a=="login"){
+								?>		
 								<a onClick="add('<?php echo $row->idbuku; ?>')" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <?php }else{
+									?>
+                                <a onClick="alertlogin()" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>    
+                                    <?php
+									} ?>
 							</div>
 						</div>
 					</div>

@@ -7,6 +7,87 @@
 	<?php echo $js; ?>
 	<?php echo $css; ?>
 </head>
+<script type="text/javascript">  
+function updateregion(region){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_region/"+region, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  refreshcart()
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+		  reloadcart(id)
+	 return false;
+	}
+
+function tambah(id){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/tambah_cart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  refreshcart()
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+		  reloadcart(id)
+	 return false;
+}
+function kurang(id){       
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/kurang_cart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  refreshcart(id)
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+		  reloadcart(id)
+	 return false;
+}
+function refreshcart(id){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/refreshcart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#refresh').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+}
+function reloadcart(id){
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/reloadcart/"+id, 
+         data: {kosong:'kosong'},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#jumlah').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+}
+    </script>
 <body>
 	<?php echo $header; ?>
 
@@ -19,45 +100,70 @@
 				</ol>
 			</div><!--/breadcrums-->
 
-
+<?php 
+									
+									$email=$this->session->userdata('email');
+                                    $acc=$this->m_data->get_account($email);
+										foreach ($acc as $account) {
+										$nama=$account['nama'];
+										$pro=$account['provinsi'];
+										$alamat=$account['alamat'];
+										$nohp=$account['nohp'];
+									}
+									?>
 			<div class="shopper-informations">
 				<div class="row">
 					<div class="col-sm-7 clearfix">
 						<div class="bill-to">
-							<p>Bill To</p>
+							<p>Shopper Information</p>
 							<div class="form-one">
 								<form>
-									<input type="text" placeholder="Receiver Name">
-									<input type="text" placeholder="Email">
-									<input type="text" placeholder="Phone">
-									<textarea rows="5" placeholder="Address"></textarea>
+									<input type="text" placeholder="Receiver Name" value="<?php echo $nama;?>">
+									<input type="text" placeholder="Email" value="<?php echo $email;?>">
+									<input type="text" placeholder="Phone" value="<?php echo $nohp;?>">
+									<textarea rows="5" placeholder="Address"value="<?php echo $alamat;?>"></textarea>
 									<!-- <input type="text" placeholder="Address"> -->
 								</form>
 							</div>
 							<div class="form-two">
 								<form>
 									<input type="text" placeholder="Zip / Postal Code *">
-									<select>
-										<option>-- Country --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<select>
+									
+									<select onChange="updateregion(this.value)">
 										<option>-- State / Province / Region --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
+										<option>Aceh</option>
+                                        <option>Bali</option>
+                                        <option>Banten</option>
+                                        <option>Bengkulu</option>
+                                        <option>Gorontalo</option>
+                                        <option>Jakarta</option>
+                                        <option>Jambi</option>
+                                        <option>Jawa Barat</option>
+                                        <option>Jawa Tengah</option>
+                                        <option>Jawa Timur</option>
+                                        <option>Kalimantan Barat</option>
+                                        <option>Kalimantan Selatan</option>
+                                        <option>Kalimantan Tengah</option>
+                                        <option>Kalimantan Timur</option>
+                                        <option>Kalimantan Utara</option>
+                                        <option>Kepulauan Bangka Belitung</option>
+                                        <option>Kepulauan Riau</option>
+                                        <option>Lampung</option>
+                                        <option>Maluku</option>
+                                        <option>Maluku Utara</option>
+                                        <option>Nusa Tenggara Barat</option>
+                                        <option>Papua</option>
+                                        <option>Papua Barat</option>
+                                        <option>Riau</option>
+                                        <option>Sulawesi Barat</option>
+                                        <option>Sulawesi Selatan</option>
+                                        <option>Sulawesi Tengah</option>
+                                        <option>Sulawesi Tenggara</option>
+                                        <option>Sulawesi Utara</option>
+                                        <option>Sumatera Barat</option>
+                                        <option>Sumatera Selatan</option>
+                                        <option>Sumatera Utara</option>
+                                        <option>Yogyakarta</option>
 									</select>
 								</form>
 							</div>
@@ -76,6 +182,7 @@
 			</div>
 
 			<div class="table-responsive cart_info">
+            
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
@@ -87,84 +194,85 @@
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
+                    
+                    <div >          
+					<?php $gtotal=0; ?>                                       
+					<tbody id="refresh">
+                    <?php
+                    foreach ($temp as $row) {
+						
+						$que=$this->m_data->tampil_buku($row['idbuku']);
+						foreach ($que as $buk) {
+							
+							
+					?> 
 						<tr>
 							<td class="cart_product">
-								<a href=""><img width="120pt" src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt=""></a>
+                            
+								<a href=""><img width="120pt" src="<?php echo base_url().'assets/buku/'.$buk["gambar"]; ?>" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Divergent</a></h4>
-								<p>Product ID: NVL001</p>
+								<h4><a href=""><?php echo $buk["judul"]; ?></a></h4>
+								<p>Product ID: <?php echo $buk["idbuku"]; ?></p>
 							</td>
 							<td class="cart_price">
-								<p>Rp 59.000</p>
+								<p><?php echo $row['harga']; ?></p>
 							</td>
 							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+								<div class="btn-group">
+                                	<a class="btn btn-success" onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
+									<input class="btn" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
+									<a class="btn btn-success"  onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
+                                    
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">Rp 59.000</p>
+								<p class="cart_total_price"><?php echo $row['totharga']; ?></p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            
+								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img width="120pt" src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt=""></a>
-							</td>
-							<td class="cart_description" width="250pt">
-								<h4><a href="">Sunshine Becomes You</a></h4>
-								<p>Product ID: NVL004</p>
-							</td>
-							<td class="cart_price">
-								<p>Rp 30.000</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">Rp 30.000</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="4">&nbsp;</td>
+                        
+					<?php
+					$gtotal+=$row['totharga'];
+						}
+                    }
+                    ?>
+                    <tr>
+						<td colspan="4">&nbsp;</td>
 							<td colspan="2">
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td>Rp 89.000</td>
+										<td>Rp.<?php echo $gtotal ?></td>
 									</tr>
+                                     <?php
+									if($pro=='Jakarta'){$sp=10000;}else{$sp=30000;}
+									$t_akhir=$sp+$gtotal;
+									?>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
-										<td>Free</td>										
+										<td>Rp.<?php echo $sp ?></td>										
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>Rp 89.000</span></td>
+										<td><span>Rp.<?php echo $t_akhir; ?></span></td>
 									</tr>
-									<tr>
-										<td></td>
-										<td><button class="btn btn-primary">Process</button></td>
-									</tr>
+                                    
+                        
+                                    <tr>
+                                    </tr>
 								</table>
+                                
 							</td>
 						</tr>
-					</tbody>
+                    </tbody>
+                    </div>
 				</table>
 			</div>
+            
 		</div>
 	</section> <!--/#cart_items-->
 

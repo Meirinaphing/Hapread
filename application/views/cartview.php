@@ -105,11 +105,10 @@ function reloadcart(id){
 								<p><?php echo $row['harga']; ?></p>
 							</td>
 							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up"  onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
-									
-                                    <a class="cart_quantity_down" onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
+								<div class="btn-group">
+                                	<a class="btn btn-success" onClick="kurang('<?php echo $row['idbuku']; ?>')"> - </a>
+									<input class="btn" type="text" name="quantity" value="<?php echo $row['jumlah']; ?>" autocomplete="off" size="2" disabled >
+									<a class="btn btn-success"  onClick="tambah('<?php echo $row['idbuku']; ?>')"> + </a>
 								</div>
 							</td>
 							<td class="cart_total">
@@ -136,55 +135,21 @@ function reloadcart(id){
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>Next Step</h3>
-				<p>Fill your location.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="chose_area">
-						
-						<ul class="user_info">
-							<li class="single_field">
-								<label>Province:</label>
-								<select>
-									<option>Select</option>
-									<option>Dhaka</option>
-									<option>London</option>
-									<option>Dillih</option>
-									<option>Lahore</option>
-									<option>Alaska</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-								
+						<ul>
+                        	<li>
+								<font size="+1">Silahkan cek daftar keranjang anda sembelum melanjutkan transaksi</font>
 							</li>
-							<li class="single_field">
-								<label>City / District:</label>
-								<select>
-									<option>Select</option>
-									<option>Dhaka</option>
-									<option>London</option>
-									<option>Dillih</option>
-									<option>Lahore</option>
-									<option>Alaska</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-							
-							</li>
-							<li class="single_field zip-field">
-								<label>Zip Code:</label>
-								<input type="text">
-							</li>
-						</ul>
-					</div>
+                        </ul>
+                    </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
 							<li>Cart Sub Total <span>Rp <?php echo $gtotal ?></span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>Rp 89.000</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Checkout</a>
 					</div>

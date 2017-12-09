@@ -57,7 +57,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Jenis Kelamin : </label>
 							<div class="col-sm-10">
-								<select name="jk" id="jk">
+								<select name="jk" id="jk" class="form-control">
 									<?php
 									if($row['jeniskelamin']=="Pria"){
 										?>
