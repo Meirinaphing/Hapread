@@ -78,6 +78,9 @@ class Home extends CI_Controller{
 	}
 
 	public function contact(){
+		$a=$this->session->userdata('email');
+		$data['account'] = $this->m_data->get_account($a);
+
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);
 		$data['header'] = $this->load->view('header', NULL, TRUE);
@@ -420,6 +423,25 @@ class Home extends CI_Controller{
 			window.location = "'.base_url().'Home/account"; </script>';
 		}
 
+	}
+
+	function insert_contact(){
+		$name = $this->input->post('name');
+		$subject = $this->input->post('subject');
+		$email = $this->input->post('email');
+		$message = $this->input->post('message');
+
+		$data = array(
+				'nama' => $name,
+				'email' => $email,
+				'subject' => $subject,
+				'message' => $message
+			);
+
+		$this->m_data->input_data($data,"contact");
+
+		echo '<script language="javascript" type="text/javascript">alert("Pesan Anda Telah Terkirim");
+		window.location = "'.base_url().'Home/contact"; </script>';
 	}
 }
 
