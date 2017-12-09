@@ -49,6 +49,50 @@ class Admin extends CI_Controller{
 		//$this->load->view('v_admin',$data);
 		
 	}
+
+	public function slideshow() {
+        // instance object
+        $crud = new grocery_CRUD();
+        // pilih tabel yang akan digunakan
+        $crud->set_theme('datatables')
+		->set_table('slideshow')
+		
+        // custom field yang ingin ditampilkan
+        ->columns('judul','sinopsis','gambar')
+		
+        // set validation rule
+ 		->required_fields('judul','sinopsis','gambar')   
+
+        //upload
+		->set_field_upload('gambar','assets/slideshow');
+		
+		// simpan hasilnya kedalam variabel output
+        $output = $crud->render();
+        $this->load->view('v_admin', $output);
+    }
+
+    public function contact() {
+        // instance object
+        $crud = new grocery_CRUD();
+        // pilih tabel yang akan digunakan
+        $crud->set_theme('datatables')
+		->set_table('contact')
+		
+        // custom field yang ingin ditampilkan
+        ->columns('nama','subject','message')
+		
+        // set validation rule
+ 		->required_fields('nama','email','subject','message'); 
+		
+		// Hilangkan delete, add, dan edit
+        $crud->unset_delete();
+        $crud->unset_edit();
+        $crud->unset_add();
+
+		// simpan hasilnya kedalam variabel output
+        $output = $crud->render();
+        $this->load->view('v_admin', $output);
+    }
 	
     public function account() {
         // instance object
@@ -85,7 +129,7 @@ class Admin extends CI_Controller{
 		$crud->callback_before_update(array($this,'encrypt_pw'));
 		// simpan hasilnya kedalam variabel output
         $output = $crud->render();
-        $this->load->view('v_account', $output);
+        $this->load->view('v_admin', $output);
     }
 	
 	 function encrypt_pw($post_array) {

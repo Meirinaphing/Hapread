@@ -70,9 +70,6 @@ $(function(){
                                 
 								<li><a href="<?php echo base_url('admin/account'); ?>"><i class="fa fa-user"></i>account
                                 </a></li>
-<!-- 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
-								<li><a href="<?php echo base_url('index.php/Home/checkout'); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="<?php echo base_url('index.php/Home/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>  
 						</div>
@@ -96,7 +93,7 @@ $(function(){
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
 								<li><a href="<?php echo base_url('admin'); ?>" >Buku</a></li>
-								<li><a href="<?php echo base_url('Home/shop'); ?>">Shop</a></li>
+								<li><a href="<?php echo base_url('admin/slideshow'); ?>">SlideShow</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="#">Products</a></li>
@@ -113,7 +110,7 @@ $(function(){
 									</ul>
 								</li>  -->
 								<!-- <li><a href="#">404</a></li> -->
-								<li><a href="<?php echo base_url('Home/contact'); ?>">Contact</a></li>
+								<li><a href="<?php echo base_url('admin/contact'); ?>">Contact</a></li>
 							</ul>
 						</div>
 					</div>
