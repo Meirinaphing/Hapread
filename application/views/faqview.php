@@ -15,7 +15,7 @@
 		<div class="bg">
 			<div class="row">    		
 				<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Frequently Ask Question</h2>
+					<h2 class="title text-center">Frequently Asked Questions</h2>
 				</div>
 			</div>			 		
 		</div>    	

@@ -13,7 +13,8 @@ class Home extends CI_Controller{
 	}
 
 	public function index(){
-		$data['ss'] = $this->m_data->slideshow();
+		$data['ss'] = $this->m_data->slideshow('slideshow');
+		$data['ri'] = $this->m_data->slideshow('recomended_item');
 
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);

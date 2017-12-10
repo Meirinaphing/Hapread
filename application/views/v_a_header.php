@@ -68,7 +68,7 @@ $(function(){
 								
 								?>
                                 
-								<li><a href="<?php echo base_url('admin/account'); ?>"><i class="fa fa-user"></i>account
+								<li><a href="<?php echo base_url('admin/account'); ?>"><i class="fa fa-user"></i>Account
                                 </a></li>
 								<li><a href="<?php echo base_url('home/logout'); ?>"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>  
@@ -94,6 +94,7 @@ $(function(){
 							<ul class="nav navbar-nav collapse navbar-collapse" id="isinav">
 								<li><a href="<?php echo base_url('admin'); ?>" >Buku</a></li>
 								<li><a href="<?php echo base_url('admin/slideshow'); ?>">SlideShow</a></li>
+								<li><a href="<?php echo base_url('admin/recomended_item'); ?>">Recomended Item</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="#">Products</a></li>

@@ -92,6 +92,34 @@ class Admin extends CI_Controller{
         $this->load->view('v_admin', $output);
     }
 
+    public function recomended_item() {
+        // instance object
+        $crud = new grocery_CRUD();
+        // pilih tabel yang akan digunakan
+        $crud->set_theme('datatables');
+		$crud->set_table('recomended_item');
+		
+        // custom field yang ingin ditampilkan
+        $crud->columns('judul','harga','gambar');
+		
+        // set validation rule
+ 		$crud->required_fields('judul','harga','gambar');
+
+        //upload
+		$crud->set_field_upload('gambar','assets/recomended_item');
+
+		//kolom active readonly
+		$crud->field_type('active', 'readonly');
+
+		// Hilangkan delete, add
+        $crud->unset_delete();
+        $crud->unset_add();
+		
+		// simpan hasilnya kedalam variabel output
+        $output = $crud->render();
+        $this->load->view('v_admin', $output);
+    }
+
     public function contact() {
         // instance object
         $crud = new grocery_CRUD();
