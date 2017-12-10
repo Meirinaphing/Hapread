@@ -32,11 +32,23 @@ $stock = $row['stock'];
 									<br>
 									<label>Quantity:</label>
 									<input id="quan" type="number" value="1" />
+                                     <?php
+									$a=$this->session->userdata('status');
+									if(isset($a) and $a=="login"){
+								?>	
 									<button data-dismiss="modal" type="button" class="btn btn-fefault cart" onClick="update('<?php echo $idbuku; ?>')">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
-								</span>
+								<?php }else{
+									?>
+                                    
+									<button data-dismiss="modal" type="button" class="btn btn-fefault cart" onClick="alertlogin()">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+                                    <?php }?>
+                                </span>
 								<p><b>Availability:</b>  
                                 	<?php
 										if($stock>0){echo "In Stock";}else{echo "Indent";}

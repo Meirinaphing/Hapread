@@ -36,14 +36,14 @@
 								<div id="mens" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Astronomy</a></li>
-											<li><a href="#">Biology</a></li>
-											<li><a href="#">Chemistry</a></li>
-											<li><a href="#">Computer</a></li>
-											<li><a href="#">Hacking</a></li>
-											<li><a href="#">Artificial Intelligence</a></li>
-											<li><a href="#">Machine Learning</a></li>
-											<li><a href="#">Business Intelligence</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/astronomy"?>'>Astronomy</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/biology"?>'>Biology</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/chemistry"?>'>Chemistry</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/computer"?>'>Computer</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/hacking"?>'>Hacking</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/artificial_intelligence"?>'>Artificial Intelligence</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/machine_learning"?>'>Machine Learning</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/business_intelligence"?>'>Business Intelligence</a></li>
 										</ul>
 									</div>
 								</div>
@@ -61,46 +61,46 @@
 								<div id="womens" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Comics</a></li>
-											<li><a href="#">Magazine</a></li>
-											<li><a href="#">Story Book</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/comic"?>'>Comics</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/megazine"?>'>Magazine</a></li>
+											<li><a href='<?php echo base_url()."home/searchshop/story_book"?>'>Story Book</a></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Education</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/education"?>'>Education</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Politics</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/politics"?>'>Politics</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Economics</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/ekonomi"?>'>Economics</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fiction</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/fiction"?>'>Fiction</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Business</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/business"?>'>Business</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Accounting</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/accounting"?>'>Accounting</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Management</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/management"?>'>Management</a></h4>
 								</div>
 							</div>
 						</div><!--/category-products-->
@@ -109,13 +109,13 @@
 							<h2>Genre</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(0)</span>Action</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Comedy</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Fantasy</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Horror</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Romance</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Sci-fi</a></li>
-									<li><a href="#"> <span class="pull-right">(0)</span>Thriller</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/action"?>'> <span class="pull-right"></span>Action</a></li>
+									<li><a href="'<?php echo base_url()."home/searchshop/comedy"?>'> <span class="pull-right"></span>Comedy</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/fantasy"?>'> <span class="pull-right"></span>Fantasy</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/horor"?>'> <span class="pull-right"></span>Horror</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/romance"?>'> <span class="pull-right"></span>Romance</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/sci-fi"?>'> <span class="pull-right"></span>Sci-fi</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/thriller"?>'> <span class="pull-right"></span>Thriller</a></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->					

@@ -13,6 +13,9 @@ $(function(){
         }
     });
 });
+function serc(where){
+	if(where==""){}else{window.location = "<?php echo base_url().'Home/searchshop/' ?>"+where;}
+}
 </script>
 
 	<header id="header"><!--header-->
@@ -133,7 +136,7 @@ $(function(){
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input  onchange="serc(this.value)" type="text" placeholder="Search"/>
 						</div>
 					</div>
 				</div>

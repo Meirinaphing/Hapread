@@ -45,6 +45,26 @@ class M_data extends CI_Model{
 	function jumlah_buku(){//pagination
 		return $this->db->get('buku')->num_rows();
 	}
+	function get_all_book_c($where,$number,$offset){//pagination
+		$this->db->like('judul',$where);
+		$this->db->or_like('category',$where);
+		$this->db->or_like('genre',$where);
+		$this->db->or_like('pengarang',$where);
+		$this->db->or_like('penerbit',$where);
+	
+		return $query = $this->db->get('buku',$number,$offset)->result();
+		//$query = $this->db->get("buku");
+		//$result = $query->result_array();
+		//return $result;
+	}
+	function jumlah_buku_c($where){//pagination
+		$this->db->like('judul',$where);
+		$this->db->or_like('category',$where);
+		$this->db->or_like('genre',$where);
+		$this->db->or_like('pengarang',$where);
+		$this->db->or_like('penerbit',$where);
+		return $this->db->get('buku')->num_rows();
+	}
 	function get_temp($email){
 		$query = $this->db->get_where("k_temp", array('email' => $email));
 		$result = $query->result_array();

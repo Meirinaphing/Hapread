@@ -32,7 +32,28 @@ class Admin extends CI_Controller{
  		$crud->field_type('genre','multiselect',
 			   array( "Action"=>"Action","Fantasy"=>"Fantasy","Horror"=>"Horror","Thriller"=>"Thriller","Romance"=>"Romance","Comedy"=>"Comedy","Sci-fi"=>"Sci-fi"));
  		$crud->field_type('category','multiselect',
-			   array( "Management" => "Management","Accounting" => "Accounting","Business" => "Business","Fiction" => "Fiction","Economics"=>"Economics","Politics"=>"Politics","Education"=>"Education","Comics"=>"Comics","Magazine"=>"Magazine","Story book"=>"Story book","Astronomy"=>"Astronomy","Biology"=>"Biology","Chemistry"=>"Chemistry","Computer"=>"Computer","Hacking"=>"Hacking","Artificial Intelligence"=>"Artificial Intelligence","Machine Learning"=>"Machine Learning","Business Intelligence"=>"Business Intelligence","Interior Design"=>"Interior Design","Graphic Design"=>"Graphic Design","Fashion Design"=>"Fashion Design"));	
+			   array( 
+			   "Management" => "Management",
+			   "Accounting" => "Accounting",
+			   "Business" => "Business",
+			   "Fiction" => "Fiction",
+			   "Economics" => "Economics",
+			   "Politics" => "Politics",
+			   "Education" => "Education",
+			   "Comics" => "Comics",
+			   "Magazine" => "Magazine",
+			   "Story_book" => "Story book",
+			   "Astronomy"=>"Astronomy",
+			   "Biology"=>"Biology",
+			   "Chemistry"=>"Chemistry",
+			   "Computer"=>"Computer",
+			   "Hacking"=>"Hacking",
+			   "Artificial_Intelligence"=>"Artificial Intelligence",
+			   "Machine_Learning"=>"Machine Learning",
+			   "Business_Intelligence"=>"Business Intelligence",
+			   "Interior_Design"=>"Interior Design",
+			   "Graphic_Design"=>"Graphic Design",
+			   "Fashion Design"=>"Fashion Design"));	
  		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock');   
 
         //upload
