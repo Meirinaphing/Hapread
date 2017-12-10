@@ -1,12 +1,12 @@
-<?php 
+<?php
  
 class M_data extends CI_Model{
 
-	function tampil_jual($email){
+	function tampil_jual($email,$number,$offset){
+		$this->db->like('email',$email);
 		$this->db->order_by('idjual', 'DESC');
-		$query=$this->db->get_where('jual',array('email' => $email));
-		$result = $query->result_array();
-		return $result;
+		return $query = $this->db->get('jual',$number,$offset)->result();
+		
 	}
 	function tampil_account($where,$table){
 		return $this->db->get_where($table,$where);
@@ -46,6 +46,10 @@ class M_data extends CI_Model{
 
 	function jumlah_buku(){//pagination
 		return $this->db->get('buku')->num_rows();
+	}
+	function jumlah_jual($where){//pagination
+		$this->db->like('email',$where);
+		return $this->db->get('jual')->num_rows();
 	}
 	function get_all_book_c($where,$number,$offset){//pagination
 		$this->db->like('judul',$where);

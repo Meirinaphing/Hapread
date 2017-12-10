@@ -10,7 +10,7 @@ class Admin extends CI_Controller{
 	
 	
 		if($this->session->userdata('status') != "admin"){
-			redirect(base_url("login"));
+			redirect(base_url("home/login"));
 		
 		}
 		
@@ -187,5 +187,41 @@ class Admin extends CI_Controller{
 			    }
 			    return $post_array;
 	    }
+
+	    public function verifikasi() {
+        // instance object
+        $crud = new grocery_CRUD();
+        // pilih tabel yang akan digunakan
+        $crud->set_theme('datatables');
+		$crud->set_table('jual');
+		
+        // custom field yang ingin ditampilkan
+        $crud->columns('idjual','tgl','provinsi','status');
+		
+        // set validation rule
+ 		$crud->required_fields('nores');
+
+		//kolom active readonly
+		$crud->field_type('id', 'readonly');
+		$crud->field_type('idjual', 'readonly');
+		$crud->field_type('email', 'readonly');
+		$crud->field_type('kota', 'readonly');
+		$crud->field_type('alamat', 'readonly');
+		$crud->field_type('tgl', 'readonly');
+		$crud->field_type('hp', 'readonly');
+		$crud->field_type('provinsi', 'readonly');
+		$crud->field_type('kodepos', 'readonly');
+		$crud->field_type('note', 'readonly');
+
+		$crud->field_type('status','dropdown', array('Success' => 'Success', 'Batal' => 'Batal'));
+
+		// Hilangkan delete, add
+        $crud->unset_delete();
+        $crud->unset_add();
+		
+		// simpan hasilnya kedalam variabel output
+        $output = $crud->render();
+        $this->load->view('v_admin', $output);
+    }
 }
 ?>

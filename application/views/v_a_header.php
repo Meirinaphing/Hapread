@@ -95,6 +95,7 @@ $(function(){
 								<li><a href="<?php echo base_url('admin'); ?>" >Buku</a></li>
 								<li><a href="<?php echo base_url('admin/slideshow'); ?>">SlideShow</a></li>
 								<li><a href="<?php echo base_url('admin/recomended_item'); ?>">Recomended Item</a></li>
+								<li><a href="<?php echo base_url('admin/verifikasi'); ?>">Verifikasi Pemesanan</a></li>
 								<!-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="#">Products</a></li>

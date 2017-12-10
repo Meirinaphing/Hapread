@@ -15,9 +15,9 @@ class Home extends CI_Controller{
 	public function index(){
 		//atur css paggination
 		$config['query_string_segment'] = 'start';
- 		$config['full_tag_open'] = '<div><ul class="pagination">';
+		$config['full_tag_open'] = '<div><ul class="pagination">';
 		$config['full_tag_close'] = '</ul></div>';
- 		$config['first_link'] = 'First';
+		$config['first_link'] = 'First';
 		$config['first_tag_open'] = '<li>';
 		$config['first_tag_close'] = '</li>';
 		$config['last_link'] = 'Last';
@@ -26,10 +26,10 @@ class Home extends CI_Controller{
 		$config['next_link'] = 'Next';
 		$config['next_tag_open'] = '<li>';
 		$config['next_tag_close'] = '</li>';
- 		$config['prev_link'] = 'Prev';
+		$config['prev_link'] = 'Prev';
 		$config['prev_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
- 		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
@@ -43,7 +43,7 @@ class Home extends CI_Controller{
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
-	
+
 		
 		
 		//$data['get_all_book'] = $this->m_data->get_all_book();4
@@ -73,9 +73,9 @@ class Home extends CI_Controller{
 	public function shop(){
 		//atur css paggination
 		$config['query_string_segment'] = 'start';
- 		$config['full_tag_open'] = '<div><ul class="pagination">';
+		$config['full_tag_open'] = '<div><ul class="pagination">';
 		$config['full_tag_close'] = '</ul></div>';
- 		$config['first_link'] = 'First';
+		$config['first_link'] = 'First';
 		$config['first_tag_open'] = '<li>';
 		$config['first_tag_close'] = '</li>';
 		$config['last_link'] = 'Last';
@@ -84,10 +84,10 @@ class Home extends CI_Controller{
 		$config['next_link'] = 'Next';
 		$config['next_tag_open'] = '<li>';
 		$config['next_tag_close'] = '</li>';
- 		$config['prev_link'] = 'Prev';
+		$config['prev_link'] = 'Prev';
 		$config['prev_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
- 		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
@@ -101,7 +101,7 @@ class Home extends CI_Controller{
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
-	
+
 		
 		
 		//$data['get_all_book'] = $this->m_data->get_all_book();
@@ -139,6 +139,10 @@ class Home extends CI_Controller{
 	}
 
 	public function cart(){
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("home/login"));
+		}
+
 		$a=$this->session->userdata('email');
 		$data['temp'] = $this->m_data->get_temp($a);
 		
@@ -159,81 +163,81 @@ class Home extends CI_Controller{
 		$email=$this->session->userdata('email');
 		$cek = $this->m_data->cek_temp($email,$idbuku)->num_rows();
 		if($cek>0){
-		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
-		foreach ($datatemp as $dat) { 
+			$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+			foreach ($datatemp as $dat) { 
 				$harga=$dat['harga'];
 				$jum=$dat['jumlah'];
 			}
 			$jum++;
 			$tot=$jum*$harga;
-		$data = array(
-			'jumlah' => $jum,
-			'totharga' => $tot
-		);
-	 
-		$where = array(
-		'email' => $email,'idbuku' => $idbuku
-		);
-	 
-		$this->m_data->update_data($where,$data,'k_temp');
-		$hasil=$this->m_data->get_temp($email);
+			$data = array(
+				'jumlah' => $jum,
+				'totharga' => $tot
+				);
+
+			$where = array(
+				'email' => $email,'idbuku' => $idbuku
+				);
+
+			$this->m_data->update_data($where,$data,'k_temp');
+			$hasil=$this->m_data->get_temp($email);
 			$jumlah=0;
-				foreach ($hasil as $ju) {
-							$jumlah+=$ju['jumlah'];
-					}
-		echo $jumlah;
+			foreach ($hasil as $ju) {
+				$jumlah+=$ju['jumlah'];
+			}
+			echo $jumlah;
 			
-			}else{
-		$databuku = $this->m_data->tampil_buku($idbuku);
+		}else{
+			$databuku = $this->m_data->tampil_buku($idbuku);
 			foreach ($databuku as $row) { 
 				$harga=$row['harga'];
 			}
-		$jumlah=1;
-		$data = array(
-			'email' => $email,
-			'idbuku' => $idbuku,
-			'jumlah' => $jumlah,
-			'harga' => $harga,
-			'totharga' => $harga
-			);
-		$this->m_data->input_data($data,'k_temp');
+			$jumlah=1;
+			$data = array(
+				'email' => $email,
+				'idbuku' => $idbuku,
+				'jumlah' => $jumlah,
+				'harga' => $harga,
+				'totharga' => $harga
+				);
+			$this->m_data->input_data($data,'k_temp');
 			$hasil=$this->m_data->get_temp($email);
 			$jumlah=0;
-				foreach ($hasil as $ju) {
-							$jumlah+=$ju['jumlah'];
-					}
-		echo $jumlah;
+			foreach ($hasil as $ju) {
+				$jumlah+=$ju['jumlah'];
+			}
+			echo $jumlah;
 		}
 	}
 	function reloadcart($idbuku){
-			
+
 		$email=$this->session->userdata('email');
-			$hasil=$this->m_data->get_temp($email);
-			$jumlah=0;
-				foreach ($hasil as $ju) {
-							$jumlah+=$ju['jumlah'];
-					}
+		$hasil=$this->m_data->get_temp($email);
+		$jumlah=0;
+		foreach ($hasil as $ju) {
+			$jumlah+=$ju['jumlah'];
+		}
 		echo $jumlah;
-	
+
 	}
 	function tambah_cart($idbuku){
 		$email=$this->session->userdata('email');
 		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
 		foreach ($datatemp as $dat) { 
-				$harga=$dat['harga'];
-				$jum=$dat['jumlah'];
-			}
-			$jum++;
-			$tot=$jum*$harga;
+			$harga=$dat['harga'];
+			$jum=$dat['jumlah'];
+		}
+		$jum++;
+		$tot=$jum*$harga;
 		$data = array(
 			'jumlah' => $jum,
 			'totharga' => $tot
-		);
-	 
+			);
+
 		$where = array(
-		'email' => $email,'idbuku' => $idbuku
-		);
-	 
+			'email' => $email,'idbuku' => $idbuku
+			);
+
 		$this->m_data->update_data($where,$data,'k_temp');
 		$a=$this->session->userdata('email');
 		$data['temp'] = $this->m_data->get_temp($a);
@@ -245,31 +249,31 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('ajax_keranjang',$data);
-	
-			
+
+
 	}
 	
 	function kurang_cart($idbuku){
 		$email=$this->session->userdata('email');
 		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
 		foreach ($datatemp as $dat) { 
-				$harga=$dat['harga'];
-				$jum=$dat['jumlah'];
-			}
-			$jum--;
-			if($jum<1){
-				$jum=1;
-				}
-			$tot=$jum*$harga;
+			$harga=$dat['harga'];
+			$jum=$dat['jumlah'];
+		}
+		$jum--;
+		if($jum<1){
+			$jum=1;
+		}
+		$tot=$jum*$harga;
 		$data = array(
 			'jumlah' => $jum,
 			'totharga' => $tot
-		);
-	 
+			);
+
 		$where = array(
-		'email' => $email,'idbuku' => $idbuku
-		);
-	 
+			'email' => $email,'idbuku' => $idbuku
+			);
+
 		$this->m_data->update_data($where,$data,'k_temp');
 		
 		
@@ -284,9 +288,9 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('ajax_keranjang',$data);
-	
+
 	}
-		
+
 
 	function hapus_cart($id){
 		$email=$this->session->userdata('email');
@@ -298,6 +302,10 @@ class Home extends CI_Controller{
 
 
 	public function checkout(){
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("home/login"));
+		}
+		
 		$a=$this->session->userdata('email');
 		$data['temp'] = $this->m_data->get_temp($a);
 		$data['js'] = $this->load->view('js', NULL, TRUE);
@@ -309,7 +317,7 @@ class Home extends CI_Controller{
 		$this->load->view('checkoutview', $data);
 	}
 	function refreshcart($idbuku){
-			
+
 		$a=$this->session->userdata('email');
 		$data['temp'] = $this->m_data->get_temp($a);
 		$data['js'] = $this->load->view('js', NULL, TRUE);
@@ -319,10 +327,10 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('ajax_checkout', $data);
-	
+
 	}
 	function tampildetil(){
-			
+
 		$idbuku = $this->input->post('id');
 		$data['idbuku'] = $idbuku;
 		$data['js'] = $this->load->view('js', NULL, TRUE);
@@ -332,12 +340,46 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('ajax_detil', $data);
-	
+
 	}
 
 	public function account(){
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("home/login"));
+		}
+
 		$a=$this->session->userdata('email');
 		$data['account'] = $this->m_data->get_account($a);
+
+		$config['query_string_segment'] = 'start';
+		$config['full_tag_open'] = '<div><ul class="pagination">';
+		$config['full_tag_close'] = '</ul></div>';
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		
+		$this->load->database();
+		$jumlah_data = $this->m_data->jumlah_jual($a);
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'home/account';
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 5;//jumlah item yang di tampilkan
+		$from = $this->uri->segment(3);
+		$this->pagination->initialize($config);		
+		$data['jual'] = $this->m_data->tampil_jual($a, $config['per_page'],$from);
 
 		$data['js'] = $this->load->view('js', NULL, TRUE);
 		$data['css'] = $this->load->view('css', NULL, TRUE);
@@ -437,57 +479,57 @@ class Home extends CI_Controller{
 
 		$id=$this->session->userdata('email');
 		$data = array(
-				'provinsi' => $region,
+			'provinsi' => $region,
 			);
 
 		$this->m_data->update_region($data, $id);
 		
 		
-		}
+	}
 	function update_hp(){
 		$hp = $this->input->post('hp');
 		$id=$this->session->userdata('email');
 		$data = array(
-				'nohp' => $hp,
+			'nohp' => $hp,
 			);
 
 		$this->m_data->update_region($data, $id);
 		
 		
-		}
-		function update_kota(){
+	}
+	function update_kota(){
 		$kota = $this->input->post('kota');
 		$id=$this->session->userdata('email');
 		$data = array(
-				'kota' => $kota,
+			'kota' => $kota,
 			);
 
 		$this->m_data->update_region($data, $id);
 		
 		
-		}
-		function update_alamat(){
+	}
+	function update_alamat(){
 		$alamat = $this->input->post('alamat');
 		$id=$this->session->userdata('email');
 		$data = array(
-				'alamat' => $alamat,
+			'alamat' => $alamat,
 			);
 
 		$this->m_data->update_region($data, $id);
 		
 		
-		}
+	}
 	function update_pos(){
 		$pos = $this->input->post('pos');
 		$id=$this->session->userdata('email');
 		$data = array(
-				'kodepos' => $pos,
+			'kodepos' => $pos,
 			);
 
 		$this->m_data->update_region($data, $id);
 		
 		
-		}
+	}
 	function edit_account(){
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
@@ -500,13 +542,13 @@ class Home extends CI_Controller{
 		$nohp = $this->input->post('nohp');
 
 		$data = array(
-				'nama' => $nama,
-				'jeniskelamin' => $jeniskelamin,
-				'alamat' => $alamat,
-				'kota' => $kota,
-				'provinsi' => $provinsi,
-				'kodepos' => $kodepos,
-				'nohp' => $nohp
+			'nama' => $nama,
+			'jeniskelamin' => $jeniskelamin,
+			'alamat' => $alamat,
+			'kota' => $kota,
+			'provinsi' => $provinsi,
+			'kodepos' => $kodepos,
+			'nohp' => $nohp
 			);
 
 		$this->m_data->update_account($data, $id);
@@ -540,10 +582,10 @@ class Home extends CI_Controller{
 		$message = $this->input->post('message');
 
 		$data = array(
-				'nama' => $name,
-				'email' => $email,
-				'subject' => $subject,
-				'message' => $message
+			'nama' => $name,
+			'email' => $email,
+			'subject' => $subject,
+			'message' => $message
 			);
 
 		$this->m_data->input_data($data,"contact");
@@ -582,36 +624,36 @@ class Home extends CI_Controller{
 		
 		$temp = $this->m_data->get_temp($id);
 		foreach ($temp as $row) {
-		$idbu=$row['idbuku'];
-		$jum=$row['jumlah'];
-		$har=$row['harga'];
-		$tothar=$row['totharga'];
-		
-		$a = array(
-			'idjual' => $idjual,
-			'email' => $id,
-			'idbuku' => $idbu,
-			'jumlah' => $jum,
-			'harga' => $har,
-			'totalharga' => $tothar
-			);
-		$que=$this->m_data->tampil_buku($idbu);
-		foreach ($que as $row) {
-			$stock = $row['stock'];
-		}	
-		$kurang=$stock-$jum;
-		$sisa = array(
-				'stock' => $kurang,
-			);
+			$idbu=$row['idbuku'];
+			$jum=$row['jumlah'];
+			$har=$row['harga'];
+			$tothar=$row['totharga'];
 
-		$this->m_data->update_stock($sisa, $idbu);
+			$a = array(
+				'idjual' => $idjual,
+				'email' => $id,
+				'idbuku' => $idbu,
+				'jumlah' => $jum,
+				'harga' => $har,
+				'totalharga' => $tothar
+				);
+			$que=$this->m_data->tampil_buku($idbu);
+			foreach ($que as $row) {
+				$stock = $row['stock'];
+			}	
+			$kurang=$stock-$jum;
+			$sisa = array(
+				'stock' => $kurang,
+				);
+
+			$this->m_data->update_stock($sisa, $idbu);
 			
-		$this->m_data->input_data($a,'jual_detil');
-		$where = array('idbuku' => $idbu,'email'=> $id);
-		$this->m_data->hapus_data($where,'k_temp');
-		
-		
-		
+			$this->m_data->input_data($a,'jual_detil');
+			$where = array('idbuku' => $idbu,'email'=> $id);
+			$this->m_data->hapus_data($where,'k_temp');
+
+
+
 		}
 	}
 	
@@ -622,52 +664,52 @@ class Home extends CI_Controller{
 		$email=$this->session->userdata('email');
 		$cek = $this->m_data->cek_temp($email,$idbuku)->num_rows();
 		if($cek>0){
-		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
-		foreach ($datatemp as $dat) { 
+			$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+			foreach ($datatemp as $dat) { 
 				$harga=$dat['harga'];
 				$jum=$dat['jumlah'];
 			}
 			$jum+=$quan;
 			$tot=$jum*$harga;
-		$data = array(
-			'jumlah' => $jum,
-			'totharga' => $tot
-		);
-	 
-		$where = array(
-		'email' => $email,'idbuku' => $idbuku
-		);
-	 
-		$this->m_data->update_data($where,$data,'k_temp');
-		$hasil=$this->m_data->get_temp($email);
+			$data = array(
+				'jumlah' => $jum,
+				'totharga' => $tot
+				);
+
+			$where = array(
+				'email' => $email,'idbuku' => $idbuku
+				);
+
+			$this->m_data->update_data($where,$data,'k_temp');
+			$hasil=$this->m_data->get_temp($email);
 			$jumlah=0;
-				foreach ($hasil as $ju) {
-							$jumlah+=$ju['jumlah'];
-					}
-		echo $jumlah;
+			foreach ($hasil as $ju) {
+				$jumlah+=$ju['jumlah'];
+			}
+			echo $jumlah;
 			
-			}else{
-		$databuku = $this->m_data->tampil_buku($idbuku);
+		}else{
+			$databuku = $this->m_data->tampil_buku($idbuku);
 			foreach ($databuku as $row) { 
 				$har=$row['harga'];
 			}
 			
-		$jumlah=$quan;
-		$harga=$jumlah*$har;
-		$data = array(
-			'email' => $email,
-			'idbuku' => $idbuku,
-			'jumlah' => $jumlah,
-			'harga' => $harga,
-			'totharga' => $harga
-			);
-		$this->m_data->input_data($data,'k_temp');
+			$jumlah=$quan;
+			$harga=$jumlah*$har;
+			$data = array(
+				'email' => $email,
+				'idbuku' => $idbuku,
+				'jumlah' => $jumlah,
+				'harga' => $harga,
+				'totharga' => $harga
+				);
+			$this->m_data->input_data($data,'k_temp');
 			$hasil=$this->m_data->get_temp($email);
 			$jumlah=0;
-				foreach ($hasil as $ju) {
-							$jumlah+=$ju['jumlah'];
-					}
-		echo $jumlah;
+			foreach ($hasil as $ju) {
+				$jumlah+=$ju['jumlah'];
+			}
+			echo $jumlah;
 		}
 	}
 	
@@ -676,9 +718,9 @@ class Home extends CI_Controller{
 	public function searchshop($where){
 		//atur css paggination
 		$config['query_string_segment'] = 'start';
- 		$config['full_tag_open'] = '<div><ul class="pagination">';
+		$config['full_tag_open'] = '<div><ul class="pagination">';
 		$config['full_tag_close'] = '</ul></div>';
- 		$config['first_link'] = 'First';
+		$config['first_link'] = 'First';
 		$config['first_tag_open'] = '<li>';
 		$config['first_tag_close'] = '</li>';
 		$config['last_link'] = 'Last';
@@ -687,10 +729,10 @@ class Home extends CI_Controller{
 		$config['next_link'] = 'Next';
 		$config['next_tag_open'] = '<li>';
 		$config['next_tag_close'] = '</li>';
- 		$config['prev_link'] = 'Prev';
+		$config['prev_link'] = 'Prev';
 		$config['prev_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
- 		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
@@ -704,7 +746,7 @@ class Home extends CI_Controller{
 		$from = $this->uri->segment(4);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book_c($where,$config['per_page'],$from);
-	
+
 		
 		
 		//$data['get_all_book'] = $this->m_data->get_all_book();
@@ -716,6 +758,34 @@ class Home extends CI_Controller{
 		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
 
 		$this->load->view('searchview', $data);
+	}
+
+	function paid($id){
+		$a=$this->session->userdata('email');
+		$dataa = array(
+			'status' => "Menuggu"
+			);
+
+		$where = array(
+			'email' => $a,'idjual' => $id
+			);
+
+		$this->m_data->update_data($where,$dataa,'jual');
+		
+	}
+
+	function jual_batal($id){
+		$a=$this->session->userdata('email');
+		$dataa = array(
+			'status' => "Batal"
+			);
+
+		$where = array(
+			'email' => $a,'idjual' => $id
+			);
+
+		$this->m_data->update_data($where,$dataa,'jual');
+		
 	}
 	
 }
