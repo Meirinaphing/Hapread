@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Alamat : </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Edit Alamat Anda" value="<?php echo $row['alamat']; ?>">
+								<textarea class="form-control" id="alamat" name="alamat" placeholder="Edit Alamat Anda" rows="3"><?php echo $row['alamat']; ?></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -156,6 +156,7 @@
 		</div>
 	</div>
 
+
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -168,45 +169,166 @@
 
 			<div class="shopper-informations">
 				<div class="row">
-					<div class="col-sm-7 clearfix">
 						<div class="bill-to">
-							<!-- <p>Nama : </p> -->
-							<div class="form-one">
-								<p> Nama </p>
+                        
+					<div class="col-sm-4">
+                    <table>
+                    	<tr>
+                        	<td>
+                            	<p> Nama </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['nama']; ?> </p>
+                            </td>
+                        </tr>
+                    	<tr>
+                        	<td>
 								<p> Email </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php $email=$row['email']; echo $row['email']; ?> </p>
+                            </td>
+                        </tr>
+                        	<td>
 								<p> Jenis Kelamin </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['jeniskelamin']; ?> </p>
+                            </td>
+                        </tr>
+                        </tr>
+                        	<td>
 								<p> Alamat </p>
-								<p> Kota </p>
-								<p> Provinsi </p>
-								<p> Kodepos </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['alamat']; ?> </p>
+                            </td>
+                        </tr>
+                        </tr>
+                        	<td><p> Kota </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['kota']; ?> </p>
+                            </td>
+                        </tr>
+                        </tr>
+                        	<td>
+                            	<p> Provinsi </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['provinsi']; ?> </p>
+                            </td>
+                        </tr>
+                        </tr>
+                        	<td>
+                            	<p> Kodepos </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['kodepos']; ?> </p>
+                            </td>
+                        </tr>
+                        </tr>
+                        	<td>
 								<p> No HP </p>
+                            </td>
+                        	<td style="padding:4px">
+                            	<p> : </p>
+                            </td>
+                        	<td>
+								<p> <?php echo $row['nohp']; ?> </p>
+                            </td>
+                        </tr>
+                    </table>
+								
+								
+								
+								
 								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit Identitas</button>
 								<button class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Password</button>
 								<br><br><br>
-							</div>
-							<div class="form-two">
-								<p> <?php echo $row['nama']; ?> </p>
-								<p> <?php echo $row['email']; ?> </p>
-								<p> <?php echo $row['jeniskelamin']; ?> </p>
-								<p> <?php echo $row['alamat']; ?> </p>
-								<p> <?php echo $row['kota']; ?> </p>
-								<p> <?php echo $row['provinsi']; ?> </p>
-								<p> <?php echo $row['kodepos']; ?> </p>
-								<p> <?php echo $row['nohp']; ?> </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5">
-						<div class="order-message">
-							<!-- <p>Shipping Order</p> -->
-
-						</div>	
-					</div>					
+                     </div>	
+                      <?php } ?>      
+					<div class="">
+							<div class="container col-sm-8">
+                           
+                    <table class="table" style="text-align:center">
+                        </tr>
+                        	<td>
+								<p> No Pesanan</p>
+                            </td>
+                        	<td>
+                            	<p> Status </p>
+                            </td>
+                        	<td>
+								<p> Nores </p>
+                            </td>
+                        	<td>
+								<p> Dikirim ke </p>
+                            </td>
+                        	<td>
+								<p> Action </p>
+                            </td>
+                        </tr>
+                            <?php
+							$que=$this->m_data->tampil_jual($email);
+							foreach ($que as $dat) {
+							if($dat['status']=='Belum Di Bayar'){
+								$s="danger";
+								}else if($dat['status']=='Batal'){
+									$s="active";
+									}else if($dat['status']=='Menuggu'){
+									$s="warning";
+										}else{$s="info";}
+							?>
+                        <tr class='<?php echo $s; ?>'>
+                        	<td>
+								<p><?php echo $dat['idjual']; ?></p>
+                            </td>
+                        	<td>
+                            	<p><?php echo $dat['status']; ?></p>
+                            </td>
+                        	<td>
+								<p><?php echo $dat['nores']; ?></p>
+                            </td>
+                        	<td>
+								<p><?php echo $dat['provinsi']; ?></p>
+                            </td>
+                        	<td>
+								<p> Action </p>
+                            </td>
+                        </tr>
+                    
+                            <?php } ?>
+					</table>
+                    		</div>
+                    </div>				
 				</div>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-	<?php } ?>
+	
+   
 	<?php echo $footer; ?>
 </body>
 </html>
