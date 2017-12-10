@@ -67,6 +67,20 @@ function updateregion(region){
           });// you have missed this bracket
 	 return false;
 	}
+	function updatekota(kota){
+	  $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_kota/", 
+         data: {kota:kota},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+               //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+	}
 
 function tambah(id){
      $.ajax({
@@ -136,6 +150,7 @@ function proses(){
 	var hp=document.getElementById('hp').value;
 	var alamat=document.getElementById('alamat').value;
 	var kodepos=document.getElementById('kodepos').value;
+	var kota=document.getElementById('kota').value;
 	var provinsi=document.getElementById('provinsi').value;
 	var note=document.getElementById('note').value;
 	if( nama==""){alert('Silahkan Isi Nama Penerima Sebelum Melanjutkan');}
@@ -151,6 +166,7 @@ function proses(){
 		 		hp: hp,
 		 		alamat:alamat,
 		 		kodepos:kodepos,
+		 		kota:kota,
 		 		provinsi:provinsi,
 		 		note:note
 		 		},
@@ -158,6 +174,7 @@ function proses(){
          cache:false,
          success: 
               function(data){
+				  window.location = "<?php echo base_url();?>"+"Home/account";
                 //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
@@ -187,6 +204,7 @@ function proses(){
 										$alamat=$account['alamat'];
 										$nohp=$account['nohp'];
 										$kodepos=$account['kodepos'];
+										$kota=$account['kota'];
 									}
 									?>
 			<div class="shopper-informations">
@@ -198,6 +216,7 @@ function proses(){
 								<form>
 									<input id="nama" type="text" placeholder="Receiver Name" value="<?php echo $nama;?>">
 									<input id="hp" type="number" placeholder="Phone" onChange="updatehp(this.value)" value="<?php echo $nohp;?>">
+                                    <input id="kota" type="text" placeholder="City" onChange="updatekota(this.value)" value="<?php echo $kota;?>">
 									<textarea id="alamat" rows="5" placeholder="Address" onChange="updatealamat(this.value)" value=""><?php echo $alamat;?></textarea>
 									<!-- <input type="text" placeholder="Address"> -->
 								</form>
@@ -309,7 +328,6 @@ function proses(){
 							</td>
 							<td class="cart_delete">
                             
-								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
                         

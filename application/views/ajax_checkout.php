@@ -32,7 +32,7 @@
 							</td>
 							<td class="cart_delete">
                             
-								<a href="<?php echo base_url().'home/hapus_cart/'.$row['idbuku']; ?>" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
+								
 							</td>
 						</tr>
                         

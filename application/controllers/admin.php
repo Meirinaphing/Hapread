@@ -30,9 +30,9 @@ class Admin extends CI_Controller{
 		
         // set validation rule
  		$crud->field_type('genre','multiselect',
-			   array( "Action","Fantasy","Horror","Thriller","Romance","Comedy","Sci-fi"));
+			   array( "Action"=>"Action","Fantasy"=>"Fantasy","Horror"=>"Horror","Thriller"=>"Thriller","Romance"=>"Romance","Comedy"=>"Comedy","Sci-fi"=>"Sci-fi"));
  		$crud->field_type('category','multiselect',
-			   array( "Management","Accounting","Business","Fiction","Economics","Politics","Education","Comics","Magazine","Story book","Astronomy","Biology","Chemistry","Computer","Hacking","Artificial Intelligence","Machine Learning","Business Intelligence","Interior Design","Graphic Design","Fashion Design"));	
+			   array( "Management" => "Management","Accounting" => "Accounting","Business" => "Business","Fiction" => "Fiction","Economics"=>"Economics","Politics"=>"Politics","Education"=>"Education","Comics"=>"Comics","Magazine"=>"Magazine","Story book"=>"Story book","Astronomy"=>"Astronomy","Biology"=>"Biology","Chemistry"=>"Chemistry","Computer"=>"Computer","Hacking"=>"Hacking","Artificial Intelligence"=>"Artificial Intelligence","Machine Learning"=>"Machine Learning","Business Intelligence"=>"Business Intelligence","Interior Design"=>"Interior Design","Graphic Design"=>"Graphic Design","Fashion Design"=>"Fashion Design"));	
  		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock');   
 
         //upload

@@ -12,6 +12,24 @@
 function alertlogin(){
 	 alert('Please login before buy');
 }
+function update(id){  
+
+	var quan=document.getElementById('quan').value;    
+	if (quan<1){quan=1;} 
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/update_cart/"+id, 
+         data: {quan:quan},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#jumlah').html(data);
+                //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+}
 function add(id){       
      $.ajax({
          type: "POST",
@@ -23,6 +41,21 @@ function add(id){
               function(data){
 				  $('#jumlah').html(data);
                 //alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+	 return false;
+}
+function detil(id){       
+     $.ajax({
+         type: "POST",
+         url: "<?php echo base_url() ;?>"+"home/tampildetil/", 
+         data: {id:id},
+         dataType: "text",  
+         cache:false,
+         success: 
+              function(data){
+				  $('#berubah').html(data);
+				  //alert(data);  //as a debugging message.
               }
           });// you have missed this bracket
 	 return false;
@@ -45,9 +78,9 @@ function add(id){
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="<?php echo base_url('index.php/Home/detail'); ?>">
-								<img src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
+								<img data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 								<h2>Rp. <?php echo $row->harga;?></h2>
-								<p><?php echo $row->judul ;?></p>
+								<p><a href="" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')"><?php echo $row->judul ;?></a></p>
                        			  <?php
 									$a=$this->session->userdata('status');
 									if(isset($a) and $a=="login"){
@@ -77,7 +110,15 @@ function add(id){
 </div>
 </section>
 
-
+<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div id="berubah">
+			</div>   
+    	</div>
+</div>
 <?php echo $footer; ?>
 </body>
+
+
+
 </html>

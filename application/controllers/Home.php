@@ -114,6 +114,11 @@ class Home extends CI_Controller{
 
 		$this->load->view('cartview', $data);
 	}
+	
+	
+	
+	
+	
 	function input_cart($idbuku){
 		$email=$this->session->userdata('email');
 		$cek = $this->m_data->cek_temp($email,$idbuku)->num_rows();
@@ -280,6 +285,19 @@ class Home extends CI_Controller{
 		$this->load->view('ajax_checkout', $data);
 	
 	}
+	function tampildetil(){
+			
+		$idbuku = $this->input->post('id');
+		$data['idbuku'] = $idbuku;
+		$data['js'] = $this->load->view('js', NULL, TRUE);
+		$data['css'] = $this->load->view('css', NULL, TRUE);
+		$data['header'] = $this->load->view('header', NULL, TRUE);
+		$data['footer'] = $this->load->view('footer', NULL, TRUE);
+		$data['left'] = $this->load->view('leftsidebar', NULL, TRUE);
+
+		$this->load->view('ajax_detil', $data);
+	
+	}
 
 	public function account(){
 		$a=$this->session->userdata('email');
@@ -391,6 +409,17 @@ class Home extends CI_Controller{
 		
 		
 		}
+		function update_kota(){
+		$kota = $this->input->post('kota');
+		$id=$this->session->userdata('email');
+		$data = array(
+				'kota' => $kota,
+			);
+
+		$this->m_data->update_region($data, $id);
+		
+		
+		}
 		function update_alamat(){
 		$alamat = $this->input->post('alamat');
 		$id=$this->session->userdata('email');
@@ -483,6 +512,7 @@ class Home extends CI_Controller{
 		$pos = $this->input->post('kodepos');
 		$provinsi = $this->input->post('provinsi');
 		$note = $this->input->post('note');
+		$kota = $this->input->post('kota');
 		$id=$this->session->userdata('email');
 		$tgl=date('d-m-y');
 		
@@ -494,6 +524,7 @@ class Home extends CI_Controller{
 			'email' => $id,
 			'status' => 'Belum Di Bayar',
 			'alamat' => $alamat,
+			'kota' => $kota,
 			'hp' => $hp,
 			'provinsi' => $provinsi,
 			'kodepos' => $pos,
@@ -518,15 +549,82 @@ class Home extends CI_Controller{
 			'harga' => $har,
 			'totalharga' => $tothar
 			);
+		$que=$this->m_data->tampil_buku($idbu);
+		foreach ($que as $row) {
+			$stock = $row['stock'];
+		}	
+		$kurang=$stock-$jum;
+		$sisa = array(
+				'stock' => $kurang,
+			);
+
+		$this->m_data->update_stock($sisa, $idbu);
 			
-			
-		
 		$this->m_data->input_data($a,'jual_detil');
 		$where = array('idbuku' => $idbu,'email'=> $id);
 		$this->m_data->hapus_data($where,'k_temp');
 		
+		
+		
 		}
 	}
+	
+	
+	
+	function update_cart($idbuku){
+		$quan = $this->input->post('quan');
+		$email=$this->session->userdata('email');
+		$cek = $this->m_data->cek_temp($email,$idbuku)->num_rows();
+		if($cek>0){
+		$datatemp = $this->m_data->edit_data("k_temp", array('email' => $email,'idbuku' => $idbuku));
+		foreach ($datatemp as $dat) { 
+				$harga=$dat['harga'];
+				$jum=$dat['jumlah'];
+			}
+			$jum+=$quan;
+			$tot=$jum*$harga;
+		$data = array(
+			'jumlah' => $jum,
+			'totharga' => $tot
+		);
+	 
+		$where = array(
+		'email' => $email,'idbuku' => $idbuku
+		);
+	 
+		$this->m_data->update_data($where,$data,'k_temp');
+		$hasil=$this->m_data->get_temp($email);
+			$jumlah=0;
+				foreach ($hasil as $ju) {
+							$jumlah+=$ju['jumlah'];
+					}
+		echo $jumlah;
+			
+			}else{
+		$databuku = $this->m_data->tampil_buku($idbuku);
+			foreach ($databuku as $row) { 
+				$har=$row['harga'];
+			}
+			
+		$jumlah=$quan;
+		$harga=$jumlah*$har;
+		$data = array(
+			'email' => $email,
+			'idbuku' => $idbuku,
+			'jumlah' => $jumlah,
+			'harga' => $harga,
+			'totharga' => $harga
+			);
+		$this->m_data->input_data($data,'k_temp');
+			$hasil=$this->m_data->get_temp($email);
+			$jumlah=0;
+				foreach ($hasil as $ju) {
+							$jumlah+=$ju['jumlah'];
+					}
+		echo $jumlah;
+		}
+	}
+	
 }
 
 
