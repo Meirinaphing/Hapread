@@ -17,9 +17,9 @@
 								<div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Interior Design</a></li>
-											<li><a href="#">Graphic Design</a></li>
-											<li><a href="#">Fashion Design</a></li>
+											<li><a href="<?php echo base_url()."home/searchshop/interior_design"?>">Interior Design</a></li>
+											<li><a href="<?php echo base_url()."home/searchshop/graphic_design"?>">Graphic Design</a></li>
+											<li><a href="<?php echo base_url()."home/searchshop/fashion_design"?>">Fashion Design</a></li>
 										</ul>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<li><a href='<?php echo base_url()."home/searchshop/action"?>'> <span class="pull-right"></span>Action</a></li>
-									<li><a href="'<?php echo base_url()."home/searchshop/comedy"?>'> <span class="pull-right"></span>Comedy</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/comedy"?>'> <span class="pull-right"></span>Comedy</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/fantasy"?>'> <span class="pull-right"></span>Fantasy</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/horor"?>'> <span class="pull-right"></span>Horror</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/romance"?>'> <span class="pull-right"></span>Romance</a></li>

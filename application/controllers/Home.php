@@ -312,6 +312,16 @@ class Home extends CI_Controller{
 		
 		$this->load->view('accountview', $data);
 	}
+
+	public function faq(){
+
+		$data['js'] = $this->load->view('js', NULL, TRUE);
+		$data['css'] = $this->load->view('css', NULL, TRUE);
+		$data['header'] = $this->load->view('header', NULL, TRUE);
+		$data['footer'] = $this->load->view('footer', NULL, TRUE);
+		
+		$this->load->view('faqview', $data);
+	}
 	
 	function aksi_login(){
 		$email = $this->input->post('email');
@@ -654,7 +664,7 @@ class Home extends CI_Controller{
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'home/searchshop/'.$where;
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 1;//jumlah item yang di tampilkan
+		$config['per_page'] = 12;//jumlah item yang di tampilkan
 		$from = $this->uri->segment(4);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book_c($where,$config['per_page'],$from);

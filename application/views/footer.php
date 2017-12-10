@@ -6,8 +6,8 @@
 					<div class="single-widget">
 						<h2>Service</h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Contact Us</a></li>
-							<li><a href="#">FAQ’s</a></li>
+							<li><a href="<?php echo base_url().'/Home/contact' ?>">Contact Us</a></li>
+							<li><a href="<?php echo base_url().'/Home/faq' ?>">FAQ’s</a></li>
 						</ul>
 					</div>
 				</div>
@@ -15,10 +15,9 @@
 					<div class="single-widget">
 						<h2>Quick Shop</h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Agama</a></li>
-							<li><a href="#">Hukum</a></li>
-							<li><a href="#">Pertanian</a></li>
-							<li><a href="#">Humaniora</a></li>
+							<li><a href="<?php echo base_url()."home/searchshop/interior_design"?>">Interior Design</a></li>
+							<li><a href="<?php echo base_url()."home/searchshop/graphic_design"?>">Graphic Design</a></li>
+							<li><a href="<?php echo base_url()."home/searchshop/fashion_design"?>">Fashion Design</a></li>
 						</ul>
 					</div>
 				</div>
@@ -26,10 +25,9 @@
 					<div class="single-widget">
 						<h2><br></h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Travel</a></li>
-							<li><a href="#">Sejarah</a></li>
-							<li><a href="#">Pendidikan</a></li>
-							<li><a href="#">Bisnis dan Ekonomi</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/ekonomi"?>'>Economics</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/business"?>'>Business</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/management"?>'>Management</a></li>
 						</ul>
 					</div>
 				</div>
@@ -37,10 +35,9 @@
 					<div class="single-widget">
 						<h2><br></h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Seni dan Desain</a></li>
-							<li><a href="#">Gaya Hidup</a></li>
-							<li><a href="#">Buku Masakan</a></li>
-							<li><a href="#">Keterampilan</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/astronomy"?>'>Astronomy</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/biology"?>'>Biology</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/chemistry"?>'>Chemistry</a></li>
 						</ul>
 					</div>
 				</div>
@@ -48,10 +45,9 @@
 					<div class="single-widget">
 						<h2><br></h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Teknologi</a></li>
-							<li><a href="#">Sains</a></li>
-							<li><a href="#">Sastra</a></li>
-							<li><a href="#">Pengembangan Diri</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/artificial_intelligence"?>'>Artificial Intelligence</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/machine_learning"?>'>Machine Learning</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/business_intelligence"?>'>Business Intelligence</a></li>
 						</ul>
 					</div>
 				</div>
@@ -59,10 +55,9 @@
 					<div class="single-widget">
 						<h2><br></h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#">Novel</a></li>
-							<li><a href="#">Komik</a></li>
-							<li><a href="#">Buku Anak-anak</a></li>
-							<li><a href="#">Majalah</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/comic"?>'>Comics</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/megazine"?>'>Magazine</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/story_book"?>'>Story Book</a></li>
 						</ul>
 					</div>
 				</div>
