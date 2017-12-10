@@ -135,8 +135,8 @@
 
 			<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
-					<?php foreach($ri as $row){	?>
-					<div class="item <?php if($row['active']==1){ echo 'active'; } ?>">
+					<div class="item active">
+						<?php foreach($ri as $row){	?>
 						<?php if($row['active']==1){ ?>	
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
@@ -151,21 +151,39 @@
 							</div>
 						</div>
 						<?php } ?>
+						<?php } ?>
 					</div>
-					<?php } ?>
+
+					<div class="item">
+						<?php foreach($ri as $row){	?>
+						<?php if($row['active']==0){ ?>	
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="<?php echo base_url().'/assets/recommended_item/'.$row['gambar'] ?>" alt="" />
+										<h2>Rp <?php echo $row['harga']; ?></h2>
+										<p><?php echo $row['judul']; ?></p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php } ?>
+						<?php } ?>
+					</div>					
 				</div>
+				<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+					<i class="fa fa-angle-left"></i>
+				</a>
+				<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+					<i class="fa fa-angle-right"></i>
+				</a>			
 			</div>
-			<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			</a>
-			<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			</a>			
-		</div>
-	</div><!--/recommended_items-->
+		</div><!--/recommended_items-->
 
-</section>
+	</section>
 
-<?php echo $footer; ?>
+	<?php echo $footer; ?>
 </body>
 </html>
