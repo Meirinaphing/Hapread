@@ -6,6 +6,26 @@
 	<title>Hapread Online Bookstore</title>
 	<?php echo $js; ?>
 	<?php echo $css; ?>
+	<script>
+		function alertlogin(){
+			alert('Please login before buy');
+		}
+		function add(id){       
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url() ;?>"+"home/input_cart/"+id, 
+				data: {kosong:'kosong'},
+				dataType: "text",  
+				cache:false,
+				success: 
+				function(data){
+					$('#jumlah').html(data);
+                //alert(data);  //as a debugging message.
+            }
+          });// you have missed this bracket
+			return false;
+		}
+	</script>
 </head>
 <body>
 	<?php echo $header; ?>
@@ -29,13 +49,17 @@
 									<h1><span>Hapread</span> Online Bookstore</h1>
 									<h2><?php echo $row['judul']; ?></h2>
 									<p><?php echo $row['sinopsis']; ?></p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<a href="<?php echo base_url()."home/searchshop/".$row['judul']; ?>">
+										<button type="button" class="btn btn-default get">Get it now</button>
+									</a>
 								</div>
 								<div class="col-sm-6">
-									<img style="width:59%; float:right;" src="<?php echo base_url().'/assets/slideshow/'.$row['gambar'] ?>" class="girl img-responsive" alt="" />
+									<a href="<?php echo base_url('home/searchshop/').$row['judul']; ?>">
+										<img style="width:59%; float:right;" src="<?php echo base_url().'/assets/slideshow/'.$row['gambar'] ?>" class="girl img-responsive" alt="" />
+									</a>
 								</div>
 							</div>
-							<?php } ?>								
+							<?php } ?>							
 						</div>
 
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -56,134 +80,95 @@
 	<div class="col-sm-9 padding-right">
 		<div class="features_items"><!--features_items-->
 			<h2 class="title text-center">Features Items</h2>
+			<?php foreach ($buku as $row) { ?>
 			<div class="col-sm-4">
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt="" />
-							<h2>Rp 59.000</h2>
-							<p>Divergent</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+						<a href="<?php echo base_url('home/searchshop/').$row->judul; ?>">
+								<img style="width:250px;height:400px;" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" />
+							</a>
+							<h2>Rp <?php echo $row->harga;?></h2>
+							<p><?php echo $row->judul;?></p>
+							<?php
+							$a=$this->session->userdata('status');
+							if(isset($a) and $a=="login"){
+								?>		
+								<a onClick="add('<?php echo $row->idbuku; ?>')" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+								<?php }else{
+									?>
+									<a onClick="alertlogin()" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Add to cart</a>    
+									<?php
+								} ?>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="product-image-wrapper">
-					<div class="single-products">
-						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book4.jpg'); ?>" alt="" />
-							<h2>Rp 30.000</h2>
-							<p>Sunshine Becomes You</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="product-image-wrapper">
-					<div class="single-products">
-						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book2.jpg'); ?>" alt="" />
-							<h2>Rp 80.000</h2>
-							<p>Insurgent</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="product-image-wrapper">
-					<div class="single-products">
-						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book3.jpg'); ?>" alt="" />
-							<h2>Rp 68.000</h2>
-							<p>Allegiant</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="product-image-wrapper">
-					<div class="single-products">
-						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book5.jpg'); ?>" alt="" />
-							<h2>Rp 75.000</h2>
-							<p>Winter In Tokyo</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="product-image-wrapper">
-					<div class="single-products">
-						<div class="productinfo text-center">
-							<img src="<?php echo base_url('assets/images/home/book1.jpg'); ?>" alt="" />
-							<h2>Rp 59.000</h2>
-							<p>Divergent</p>
-							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--features_items-->
 
-		<div class="recommended_items"><!--recommended_items-->
-			<h2 class="title text-center">recommended items</h2>
+				<?php } ?>
 
-			<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="item active">
-						<?php foreach($ri as $row){	?>
-						<?php if($row['active']==1){ ?>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<?php echo base_url().'/assets/recommended_item/'.$row['gambar'] ?>" alt="" />
-										<h2>Rp <?php echo $row['harga']; ?></h2>
-										<p><?php echo $row['judul']; ?></p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
+
+
+
+
+
+			</div><!--features_items-->
+
+			<div class="recommended_items"><!--recommended_items-->
+				<h2 class="title text-center">recommended items</h2>
+
+				<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="item active">
+							<?php foreach($ri as $row){	?>
+							<?php if($row['active']==1){ ?>	
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="<?php echo base_url('/assets/recomended_item/').$row['gambar']; ?>" alt="" />
+											<h2>Rp <?php echo $row['harga']; ?></h2>
+											<p><?php echo $row['judul']; ?></p>
+											<a href="<?php echo base_url()."home/searchshop/".$row['judul']; ?>" class="btn btn-default add-to-cart"><i class="fa"></i>Get It Now</a>
+										</div>
 									</div>
 								</div>
 							</div>
+							<?php } ?>
+							<?php } ?>
 						</div>
-						<?php } ?>
-						<?php } ?>
-					</div>
 
-					<div class="item">
-						<?php foreach($ri as $row){	?>
-						<?php if($row['active']==0){ ?>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<?php echo base_url().'/assets/recommended_item/'.$row['gambar'] ?>" alt="" />
-										<h2>Rp <?php echo $row['harga']; ?></h2>
-										<p><?php echo $row['judul']; ?></p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+						<div class="item">
+							<?php foreach($ri as $row){	?>
+							<?php if($row['active']==0){ ?>	
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="<?php echo base_url('/assets/recomended_item/').$row['gambar']; ?>" alt="" />
+											<h2>Rp <?php echo $row['harga']; ?></h2>
+											<p><?php echo $row['judul']; ?></p>
+											<a href="<?php echo base_url()."home/searchshop/".$row['judul']; ?>" class="btn btn-default add-to-cart"><i class="fa"></i>Get It Now</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<?php } ?>
-						<?php } ?>
-					</div>					
+							<?php } ?>
+							<?php } ?>
+						</div>					
+					</div>
+					<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>			
 				</div>
-				<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>			
-			</div>
-		</div><!--/recommended_items-->
+			</div><!--/recommended_items-->
 
-	</section>
+		</section>
 
-	<?php echo $footer; ?>
-</body>
-</html>
+		<?php echo $footer; ?>
+	</body>
+	</html>

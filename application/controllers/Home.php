@@ -13,6 +13,41 @@ class Home extends CI_Controller{
 	}
 
 	public function index(){
+		//atur css paggination
+		$config['query_string_segment'] = 'start';
+ 		$config['full_tag_open'] = '<div><ul class="pagination">';
+		$config['full_tag_close'] = '</ul></div>';
+ 		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+ 		$config['prev_link'] = 'Prev';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+ 		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		
+		$this->load->database();
+		$jumlah_data = $this->m_data->jumlah_buku();
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'home/shop';
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 6;//jumlah item yang di tampilkan
+		$from = $this->uri->segment(3);
+		$this->pagination->initialize($config);		
+		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
+	
+		
+		
+		//$data['get_all_book'] = $this->m_data->get_all_book();4
+
 		$data['ss'] = $this->m_data->slideshow('slideshow');
 		$data['ri'] = $this->m_data->slideshow('recomended_item');
 
@@ -62,7 +97,7 @@ class Home extends CI_Controller{
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'home/shop';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 12;//jumlah item yang di tampilkan
+		$config['per_page'] = 9;//jumlah item yang di tampilkan
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
@@ -487,7 +522,7 @@ class Home extends CI_Controller{
 
 		if(md5($oldpass) == $pass){
 			$data = array('password'=>md5($newpass));
-			$this->m_data->update_password($data,$id);
+			$this->m_data->update_account($data,$id);
 
 			echo '<script language="javascript" type="text/javascript">alert("Berhasil mengubah Password");
 			window.location = "'.base_url().'Home/account"; </script>';

@@ -36,12 +36,8 @@ class M_data extends CI_Model{
 		$this->db->where('email',$where);
 		$this->db->update('account',$data);
 	}
-	function update_password($data, $where){
-		$this->db->where('iduser',$where);
-		$this->db->update('account',$data);
-	}
 	function get_all_book($number,$offset){//pagination
-	
+		$this->db->order_by('idbuku', 'DESC');
 		return $query = $this->db->get('buku',$number,$offset)->result();
 		//$query = $this->db->get("buku");
 		//$result = $query->result_array();
@@ -64,6 +60,8 @@ class M_data extends CI_Model{
 		//return $result;
 	}
 	function jumlah_buku_c($where){//pagination
+		$this->db->order_by('idbuku', 'DESC');
+		
 		$this->db->like('judul',$where);
 		$this->db->or_like('category',$where);
 		$this->db->or_like('genre',$where);

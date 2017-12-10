@@ -281,7 +281,7 @@
                             	<p> Status </p>
                             </td>
                         	<td>
-								<p> Nores </p>
+								<p> Notes </p>
                             </td>
                         	<td>
 								<p> Dikirim ke </p>

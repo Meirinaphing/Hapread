@@ -151,7 +151,7 @@ class Admin extends CI_Controller{
 		$crud->set_table('account');
 		
         // custom field yang ingin ditampilkan
-        $crud->columns('email','nama','jeniskelamin','banyakpesanan');
+        $crud->columns('email','nama','jeniskelamin');
 		$crud->field_type('jeniskelamin','dropdown',array('Pria' => 'Pria', 'Wanita' => 'Wanita'));
 		$crud->field_type('password', 'password');
 		$crud->field_type('nohp', 'integer');

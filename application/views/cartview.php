@@ -143,7 +143,7 @@ function reloadcart(id){
 					<div class="chose_area">
 						<ul>
                         	<li>
-								<font size="+1">Silahkan cek daftar keranjang anda sembelum melanjutkan transaksi</font>
+								<font size="+1">Please check your cart list before continuing the transaction</font>
 							</li>
                         </ul>
                     </div>
@@ -153,7 +153,7 @@ function reloadcart(id){
 						<ul>
 							<li>Cart Sub Total <span>Rp <?php echo $gtotal ?></span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Checkout</a>
+							<a class="btn btn-default update" href="<?php echo base_url('home/checkout'); ?>">Checkout</a>
 					</div>
 				</div>
 			</div>
