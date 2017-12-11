@@ -78,7 +78,7 @@ function detil(id){
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="<?php echo base_url('index.php/Home/detail'); ?>">
-								<img data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
+								<img style="width:250px;height:400px;" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 								<h2>Rp. <?php echo $row->harga;?></h2>
 								<p><a href="" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')"><?php echo $row->judul ;?></a></p>
                        			  <?php
@@ -111,11 +111,13 @@ function detil(id){
 </section>
 
 <div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div id="berubah">
-			</div>   
-    	</div>
-</div>
+		<div class="modal-dialog" style="width:80%;">
+			<div class="modal-content">
+				<div id="berubah"></div>
+
+			</div>
+		</div>
+	</div>
 <?php echo $footer; ?>
 </body>
 

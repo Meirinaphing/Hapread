@@ -71,7 +71,7 @@
 							<option>Pria</option>
 							<option>Wanita</option>
 						</select><br><br>
-                        <div  class="g-recaptcha"data-sitekey="6LeXSAwUAAAAAH62LWL8EhUTS0pGPthny4l7XPFh"></div><br>
+                        <div  class="g-recaptcha"data-sitekey="6LeRgzwUAAAAAAlZBJe6Hdva2ULBSHB5hNqhIOge"></div><br>
 						<button type="submit" class="btn btn-default">Signup</button>
 					</form>
 				</div><!--/sign up form-->

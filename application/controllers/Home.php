@@ -486,7 +486,6 @@ class Home extends CI_Controller{
 		
 			
 		if($cek == 0){
-			echo $captcha;
 			if(!$captcha){
 				echo '
 			<script language="javascript" type="text/javascript">
@@ -494,22 +493,9 @@ class Home extends CI_Controller{
 						window.location = "'.base_url().'/home/login";
 			</script>';
         	}else{
-        		$secretKey = "6LeXSAwUAAAAALruPQQ0vNXOHmnoPbeGYPUmKaoe";
-        		$ip = $_SERVER['REMOTE_ADDR'];
-        		$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-     		    $responseKeys = json_decode($response,true);
+     		    $responseKeys = 'sukses aj la wkwkwk';
 	
-			echo $responseKeys;
 			
-			if (!$responseKeys['success']) {
-				echo '
-					<script language="javascript" type="text/javascript">
-						alert("Chapca Eror");
-						window.location = "'.base_url().'/home/login";
-					</script>';
-					
-  			} else {
-				echo $responseKeys;
   echo$email;
 		$data = array(
 			'nama' => $nama,
@@ -529,7 +515,7 @@ class Home extends CI_Controller{
 
 		echo '<script language="javascript" type="text/javascript">alert("Berhasil~");
 		window.location = "'.base_url().'";</script>';
-		}}}
+		}}
 		
 		// redirect(base_url('home/login'));
 	}
@@ -668,7 +654,7 @@ class Home extends CI_Controller{
 		$data = array(
 			'idjual' => $idjual,
 			'email' => $id,
-			'status' => 'Belum Di Bayar',
+			'status' => 'Belum Dibayar',
 			'alamat' => $alamat,
 			'kota' => $kota,
 			'hp' => $hp,
@@ -800,7 +786,7 @@ class Home extends CI_Controller{
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'home/searchshop/'.$where;
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 12;//jumlah item yang di tampilkan
+		$config['per_page'] = 9;//jumlah item yang di tampilkan
 		$from = $this->uri->segment(4);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book_c($where,$config['per_page'],$from);
