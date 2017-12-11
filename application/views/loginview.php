@@ -7,6 +7,7 @@
 	<?php echo $js; ?>
 	<?php echo $css; ?>
 </head>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
 	function cekpss(s){
 		var s=s;
@@ -20,8 +21,25 @@
 		}
 
 	}
+	function cekem(reemail){   
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url() ;?>"+"home/cekem/", 
+				data: {reemail:reemail},
+				dataType: "text",  
+				cache:false,
+				success: 
+				function(data){
+					 $('#cek').html(data);
+                //alert(data);  //as a debugging message.
+            }
+          });// you have missed this bracket
+			return false;
+		}
 </script>
 <body>
+<div id="cek">
+</div>
 	<?php echo $header; ?>
 
 	<!--form-->
@@ -45,7 +63,7 @@
 					<h2>New User Signup!</h2>
 					<form action="<?php echo base_url('home/regis'); ?>" method="post">
 						<input type="text" id="name" name="name" placeholder="Name" required />
-						<input type="email" id="email" name="email" placeholder="Email Address" required/>
+						<input type="email" id="reemail" name="reemail" onChange="cekem(this.value)" placeholder="Email Address" required/>
 						<input type="password" id="pass" name="pass" placeholder="Password" required/>
 						<input type="password" id="repass" name="repass" onChange="cekpss(this.value)" placeholder="Repassword" required/>
 						Jenis Kelamin : 
@@ -53,6 +71,7 @@
 							<option>Pria</option>
 							<option>Wanita</option>
 						</select><br><br>
+                        <div  class="g-recaptcha"data-sitekey="6LeXSAwUAAAAAH62LWL8EhUTS0pGPthny4l7XPFh"></div><br>
 						<button type="submit" class="btn btn-default">Signup</button>
 					</form>
 				</div><!--/sign up form-->

@@ -448,12 +448,69 @@ class Home extends CI_Controller{
 		redirect(base_url());
 	}
 	
-	function regis(){
-		$nama = $this->input->post('name');
-		$email = $this->input->post('email');
+	function cekem(){
+		$email = $this->input->post('reemail');
 		$password = $this->input->post('pass');
 		$jeniskelamin = $this->input->post('jk');
-
+		$where = array(
+			'email' => $email,
+			);
+		$cek = $this->m_login->cek_login("account",$where)->num_rows();
+		if($cek > 0){
+			echo '
+			<script language="javascript" type="text/javascript">
+				alert("Email telah digunakan");
+				document.getElementById("reemail").value="";
+				document.getElementById("reemail").focus();
+			</script>';}
+		}
+	
+	function regis(){
+		$captcha = $this->input->post('g-recaptcha-response');
+		$nama = $this->input->post('name');
+		$email = $this->input->post('reemail');
+		$password = $this->input->post('pass');
+		$jeniskelamin = $this->input->post('jk');
+		$where = array(
+			'email' => $email,
+			);
+		$cek = $this->m_login->cek_login("account",$where)->num_rows();
+		if($cek > 0){
+			echo '
+			<script language="javascript" type="text/javascript">
+				alert("Email telah digunakan");
+				document.getElementById("reemail").value="";
+				document.getElementById("reemail").focus();
+			</script>';
+		}
+		
+			
+		if($cek == 0){
+			echo $captcha;
+			if(!$captcha){
+				echo '
+			<script language="javascript" type="text/javascript">
+				alert("please input chapca");
+						window.location = "'.base_url().'/home/login";
+			</script>';
+        	}else{
+        		$secretKey = "6LeXSAwUAAAAALruPQQ0vNXOHmnoPbeGYPUmKaoe";
+        		$ip = $_SERVER['REMOTE_ADDR'];
+        		$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+     		    $responseKeys = json_decode($response,true);
+	
+			echo $responseKeys;
+			
+			if (!$responseKeys['success']) {
+				echo '
+					<script language="javascript" type="text/javascript">
+						alert("Chapca Eror");
+						window.location = "'.base_url().'/home/login";
+					</script>';
+					
+  			} else {
+				echo $responseKeys;
+  echo$email;
 		$data = array(
 			'nama' => $nama,
 			'email' => $email,
@@ -472,6 +529,7 @@ class Home extends CI_Controller{
 
 		echo '<script language="javascript" type="text/javascript">alert("Berhasil~");
 		window.location = "'.base_url().'";</script>';
+		}}}
 		
 		// redirect(base_url('home/login'));
 	}
