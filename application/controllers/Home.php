@@ -1,15 +1,12 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller{
-	
 	function __construct(){
 		parent::__construct();	
 		$this->load->helper('url');	
 		$this->load->model('m_login');
 		$this->load->model('m_data');
-
 	}
 
 	public function index(){
@@ -43,11 +40,8 @@ class Home extends CI_Controller{
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
-
-		
 		
 		//$data['get_all_book'] = $this->m_data->get_all_book();4
-
 		$data['ss'] = $this->m_data->slideshow('slideshow');
 		$data['ri'] = $this->m_data->slideshow('recomended_item');
 
@@ -97,7 +91,7 @@ class Home extends CI_Controller{
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'home/shop';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 9;//jumlah item yang di tampilkan
+		$config['per_page'] = 6;//jumlah item yang di tampilkan
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book($config['per_page'],$from);
@@ -786,7 +780,7 @@ class Home extends CI_Controller{
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'home/searchshop/'.$where;
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 9;//jumlah item yang di tampilkan
+		$config['per_page'] = 6;//jumlah item yang di tampilkan
 		$from = $this->uri->segment(4);
 		$this->pagination->initialize($config);		
 		$data['buku'] = $this->m_data->get_all_book_c($where,$config['per_page'],$from);

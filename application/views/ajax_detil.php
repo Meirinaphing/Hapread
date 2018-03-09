@@ -27,7 +27,7 @@ foreach ($que as $row) {
 			<span>
 				<h2><b>Sinopsis</b></h2>
 				<?php echo $sinopsis; ?>
-				<span>Rp <?php echo $harga ?></span>
+				<span><h2 style="color: orange;">Rp <?php echo $harga ?></h2></span>
 				<br>
 				<br>
 				<br>

@@ -85,7 +85,7 @@
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo text-center">
-						<a href="<?php echo base_url('home/searchshop/').$row->judul; ?>">
+						<a href="<?php echo base_url('home/searchshop/').$row->idbuku; ?>">
 								<img style="width:250px;height:400px;" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" />
 							</a>
 							<h2>Rp <?php echo $row->harga;?></h2>

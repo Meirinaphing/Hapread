@@ -80,7 +80,9 @@
 								<a href="<?php echo base_url('index.php/Home/detail'); ?>">
 									<img style="width:250px;height:400px;" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')" src="<?php echo base_url().'assets/buku/'.$row->gambar ;?>" alt="" /></a>
 									<h2>Rp. <?php echo $row->harga;?></h2>
-									<p><a href="" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')"><?php echo $row->judul ;?></a></p>
+									<p style="height:40px;"><a href="" data-toggle="modal" data-target="#myModal" onClick="detil('<?php echo $row->idbuku; ?>')">
+										<?php echo $row->judul ;?>
+									</a></p>
 									<?php
 									$a=$this->session->userdata('status');
 									if(isset($a) and $a=="login"){
@@ -98,10 +100,11 @@
 						<?php } ?>
 						<div class="row col-sm-12">
 
-
-							<?php 
-							echo $this->pagination->create_links();
-							?>
+							<center>
+								<?php 
+								echo $this->pagination->create_links();
+								?>
+							</center>
 						</div>
 					</div><!--features_items-->
 

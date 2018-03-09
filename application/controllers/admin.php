@@ -53,7 +53,7 @@ class Admin extends CI_Controller{
 			   "Business_Intelligence"=>"Business Intelligence",
 			   "Interior_Design"=>"Interior Design",
 			   "Graphic_Design"=>"Graphic Design",
-			   "Fashion Design"=>"Fashion Design"));	
+			   "Fashion_Design"=>"Fashion Design"));	
  		$crud->required_fields('judul','sinopsis','gambar','cover_back','harga','stock');   
 
         //upload

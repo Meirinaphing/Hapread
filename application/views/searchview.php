@@ -98,10 +98,12 @@ function detil(id){
 				<?php } ?>
 				<div class="row col-sm-12">
 	
-                        
+                        <center>
 						<?php 
 							echo $this->pagination->create_links();
 					?>
+						
+					</center>
 				</div>
 			</div><!--features_items-->
 

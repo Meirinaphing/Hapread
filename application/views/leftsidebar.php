@@ -80,7 +80,7 @@
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/ekonomi"?>'>Economics</a></h4>
+									<h4 class="panel-title"><a href='<?php echo base_url()."home/searchshop/economics"?>'>Economics</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
@@ -112,7 +112,7 @@
 									<li><a href='<?php echo base_url()."home/searchshop/action"?>'> <span class="pull-right"></span>Action</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/comedy"?>'> <span class="pull-right"></span>Comedy</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/fantasy"?>'> <span class="pull-right"></span>Fantasy</a></li>
-									<li><a href='<?php echo base_url()."home/searchshop/horor"?>'> <span class="pull-right"></span>Horror</a></li>
+									<li><a href='<?php echo base_url()."home/searchshop/horror"?>'> <span class="pull-right"></span>Horror</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/romance"?>'> <span class="pull-right"></span>Romance</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/sci-fi"?>'> <span class="pull-right"></span>Sci-fi</a></li>
 									<li><a href='<?php echo base_url()."home/searchshop/thriller"?>'> <span class="pull-right"></span>Thriller</a></li>

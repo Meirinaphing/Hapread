@@ -8,7 +8,7 @@
 							
 					?> 
 						<tr>
-							<td class="cart_product">
+							<td style="width: 120pt;" class="cart_product">
                             
 								<a href=""><img width="120pt" src="<?php echo base_url().'assets/buku/'.$buk["gambar"]; ?>" alt=""></a>
 							</td>

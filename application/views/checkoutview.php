@@ -304,11 +304,11 @@ function proses(){
 							
 					?> 
 						<tr>
-							<td class="cart_product">
+							<td style="width:120pt" class="cart_product">
                             
 								<a href=""><img width="120pt" src="<?php echo base_url().'assets/buku/'.$buk["gambar"]; ?>" alt=""></a>
 							</td>
-							<td class="cart_description">
+							<td style="height:200px;" class="cart_description">
 								<h4><a href=""><?php echo $buk["judul"]; ?></a></h4>
 								<p>Product ID: <?php echo $buk["idbuku"]; ?></p>
 							</td>

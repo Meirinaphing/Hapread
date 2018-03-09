@@ -25,7 +25,7 @@
 					<div class="single-widget">
 						<h2><br></h2>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href='<?php echo base_url()."home/searchshop/ekonomi"?>'>Economics</a></li>
+							<li><a href='<?php echo base_url()."home/searchshop/economics"?>'>Economics</a></li>
 							<li><a href='<?php echo base_url()."home/searchshop/business"?>'>Business</a></li>
 							<li><a href='<?php echo base_url()."home/searchshop/management"?>'>Management</a></li>
 						</ul>

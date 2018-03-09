@@ -6,7 +6,6 @@ class M_data extends CI_Model{
 		$this->db->like('email',$email);
 		$this->db->order_by('idjual', 'DESC');
 		return $query = $this->db->get('jual',$number,$offset)->result();
-		
 	}
 	function tampil_account($where,$table){
 		return $this->db->get_where($table,$where);
@@ -56,6 +55,7 @@ class M_data extends CI_Model{
 		$this->db->or_like('category',$where);
 		$this->db->or_like('genre',$where);
 		$this->db->or_like('pengarang',$where);
+		$this->db->or_like('idbuku',$where);
 		$this->db->or_like('penerbit',$where);
 	
 		return $query = $this->db->get('buku',$number,$offset)->result();
@@ -70,6 +70,7 @@ class M_data extends CI_Model{
 		$this->db->or_like('category',$where);
 		$this->db->or_like('genre',$where);
 		$this->db->or_like('pengarang',$where);
+		$this->db->or_like('idbuku',$where);
 		$this->db->or_like('penerbit',$where);
 		return $this->db->get('buku')->num_rows();
 	}
